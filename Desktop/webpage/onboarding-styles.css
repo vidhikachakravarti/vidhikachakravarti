@@ -522,58 +522,27 @@ form .btn-primary:not(.button-group .btn-primary) {
 
 /* Nutritionist Info */
 .nutritionist-info {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 20px;
+    text-align: center;
+    padding: 25px;
     background: linear-gradient(135deg, var(--color-lightest) 0%, var(--color-light-purple) 50%);
     border-radius: 15px;
     margin-bottom: 25px;
 }
 
-.nutritionist-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(135deg, var(--color-purple) 0%, var(--color-dark-purple) 100%);
-    border-radius: 50%;
-    box-shadow: 0 4px 12px rgba(40, 4, 112, 0.2);
-}
-
-.doctor-icon {
-    font-size: 32px;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-}
 
 .nutritionist-details h3 {
     color: var(--color-darkest);
     margin-bottom: 8px;
-    font-size: 18px;
+    font-size: 20px;
+    font-weight: 700;
 }
 
 .nutritionist-details p {
     color: var(--color-gray);
-    font-size: 14px;
-    margin-bottom: 12px;
+    font-size: 15px;
+    margin-bottom: 0;
 }
 
-.specialties {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
-.specialty-tag {
-    background: linear-gradient(135deg, var(--color-light-purple) 0%, var(--color-medium-purple) 100%);
-    color: var(--color-darkest);
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 500;
-    border: 1px solid var(--color-purple);
-}
 
 /* Calendar Container */
 #calendarContainer {
