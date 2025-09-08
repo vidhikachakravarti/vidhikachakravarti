@@ -135,8 +135,16 @@ function initializeOTPInputs() {
 function setupEventListeners() {
     document.getElementById('otpForm').addEventListener('submit', handleOTPSubmit);
     document.getElementById('resendOtp').addEventListener('click', resendOTP);
-    document.getElementById('confirmBooking').addEventListener('click', handleBookingConfirmation);
     document.getElementById('downloadAppBtn').addEventListener('click', handleAppDownload);
+}
+
+// Setup confirm booking listener separately when the step becomes active
+function setupConfirmBookingListener() {
+    const confirmBtn = document.getElementById('confirmBooking');
+    if (confirmBtn) {
+        confirmBtn.addEventListener('click', handleBookingConfirmation);
+        console.log('Confirm booking listener attached');
+    }
 }
 
 // Step 1: Handle Details Form Submit
@@ -270,6 +278,9 @@ async function loadNutritionistCalendar() {
         // Initialize Google Calendar
         initializeGoogleCalendar(nutritionist.calendarId);
         
+        // Setup confirm booking button listener
+        setupConfirmBookingListener();
+        
     } catch (error) {
         console.error('Error loading calendar:', error);
     }
@@ -309,6 +320,8 @@ function initializeGoogleCalendar(calendarId) {
     const slots = calendarContainer.querySelectorAll('.time-slot');
     slots.forEach(slot => {
         slot.addEventListener('click', function() {
+            console.log('Time slot clicked:', this.textContent);
+            
             // Remove previous selection
             slots.forEach(s => s.classList.remove('selected'));
             // Add selection to clicked slot
@@ -319,7 +332,9 @@ function initializeGoogleCalendar(calendarId) {
             updateSelectedSlot();
             
             // Enable confirm button
-            document.getElementById('confirmBooking').disabled = false;
+            const confirmBtn = document.getElementById('confirmBooking');
+            confirmBtn.disabled = false;
+            console.log('Confirm button enabled');
         });
     });
 }
@@ -385,6 +400,13 @@ function updateSelectedSlot() {
 
 // Step 4: Handle Booking Confirmation
 async function handleBookingConfirmation() {
+    console.log('Booking confirmation clicked');
+    
+    if (!selectedTimeSlot) {
+        alert('Please select a time slot first.');
+        return;
+    }
+    
     showLoading('Confirming your appointment...');
     
     try {
@@ -400,6 +422,7 @@ async function handleBookingConfirmation() {
         // Update confirmation UI
         updateConfirmationDetails(appointment, deepLink);
         
+        console.log('Redirecting to step 4');
         goToStep(4);
         
     } catch (error) {
