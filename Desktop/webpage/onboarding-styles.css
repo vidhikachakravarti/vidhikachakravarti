@@ -351,8 +351,12 @@ input:hover:not(:focus) {
 .btn-primary {
     background: linear-gradient(135deg, var(--color-purple) 0%, var(--color-dark-purple) 100%);
     color: var(--color-white);
-    width: 100%;
     margin-top: 10px;
+}
+
+/* Override width for form buttons outside button groups */
+form .btn-primary:not(.button-group .btn-primary) {
+    width: 100%;
 }
 
 .btn-primary:hover:not(:disabled) {
@@ -387,15 +391,22 @@ input:hover:not(:focus) {
 }
 
 .button-group {
-    display: flex;
-    gap: 15px;
-    margin-top: 30px;
+    display: flex !important;
+    gap: 15px !important;
+    margin-top: 30px !important;
+    width: 100% !important;
+    align-items: center !important;
 }
 
 .button-group .btn {
     flex: 1;
-    min-width: 140px;
-    padding: 14px 20px;
+    min-width: 140px !important;
+    max-width: none !important;
+    padding: 14px 20px !important;
+    width: auto !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    text-align: center !important;
 }
 
 /* OTP Verification */
