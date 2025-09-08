@@ -43,6 +43,9 @@ body {
     margin-bottom: 30px;
     padding: 20px;
     width: 100%;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
 }
 
 .logo {
