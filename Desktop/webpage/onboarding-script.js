@@ -296,8 +296,8 @@ function initializeGoogleCalendar(calendarId) {
     calendarContainer.innerHTML = `
         <div class="mock-calendar">
             <div class="calendar-header">
-                <h4>Select an Available Time Slot</h4>
-                <p>November 2024 - Free Consultation (45 minutes)</p>
+                <h4>Select your preferred time slot</h4>
+                <p>November 2024 - Free Consultation - 30 minutes</p>
             </div>
             <div class="time-slots">
                 ${generateTimeSlots()}
@@ -340,19 +340,20 @@ function generateTimeSlots() {
         slots.push('<div class="slot-times">');
         
         times.forEach((time, index) => {
-            const available = Math.random() > 0.3; // Randomly make some slots unavailable
-            const datetime = new Date(date);
-            const [hour, period] = time.split(' ');
-            const [h, m] = hour.split(':');
-            datetime.setHours(period === 'PM' && h !== '12' ? parseInt(h) + 12 : parseInt(h), parseInt(m || 0));
-            
-            slots.push(`
-                <button class="time-slot ${!available ? 'unavailable' : ''}" 
-                        data-datetime="${datetime.toISOString()}"
-                        ${!available ? 'disabled' : ''}>
-                    ${time}
-                </button>
-            `);
+            const available = Math.random() > 0.2; // More slots available now
+            if (available) { // Only show available slots
+                const datetime = new Date(date);
+                const [hour, period] = time.split(' ');
+                const [h, m] = hour.split(':');
+                datetime.setHours(period === 'PM' && h !== '12' ? parseInt(h) + 12 : parseInt(h), parseInt(m || 0));
+                
+                slots.push(`
+                    <button class="time-slot" 
+                            data-datetime="${datetime.toISOString()}">
+                        ${time}
+                    </button>
+                `);
+            }
         });
         
         slots.push('</div>');

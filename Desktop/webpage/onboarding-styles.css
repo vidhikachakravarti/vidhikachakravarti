@@ -501,28 +501,18 @@ input:hover:not(:focus) {
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid var(--color-white);
+    box-shadow: 0 4px 12px rgba(40, 4, 112, 0.1);
 }
 
 .nutritionist-details h3 {
     color: var(--color-darkest);
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+    font-size: 18px;
 }
 
 .nutritionist-details p {
     color: var(--color-gray);
     font-size: 14px;
-    margin-bottom: 8px;
-}
-
-.rating {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-}
-
-.stars {
-    color: gold;
 }
 
 /* Calendar Container */
