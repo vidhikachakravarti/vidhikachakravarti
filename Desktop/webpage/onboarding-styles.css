@@ -37,6 +37,22 @@ body {
     margin: 0 auto;
 }
 
+/* Logo Header */
+.logo-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.logo {
+    max-height: 60px;
+    width: auto;
+    object-fit: contain;
+}
+
 /* Progress Bar */
 .progress-bar {
     display: flex;
