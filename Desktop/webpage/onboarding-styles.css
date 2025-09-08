@@ -346,6 +346,12 @@ input:hover:not(:focus) {
     transition: all 0.3s ease;
     display: inline-block;
     text-align: center;
+    box-sizing: border-box;
+}
+
+/* Ensure button group buttons override base button styles */
+.button-group .btn {
+    padding: 14px 20px !important;
 }
 
 .btn-primary {
@@ -379,10 +385,21 @@ form .btn-primary:not(.button-group .btn-primary) {
 .btn-secondary {
     background: var(--color-light-purple);
     color: var(--color-darkest);
+    border: 2px solid var(--color-light-purple);
 }
 
 .btn-secondary:hover {
     background: var(--color-medium-purple);
+    border-color: var(--color-medium-purple);
+    transform: translateY(-2px);
+}
+
+.button-group .btn-secondary {
+    border: 2px solid var(--color-light-purple) !important;
+}
+
+.button-group .btn-primary {
+    border: 2px solid transparent !important;
 }
 
 .btn:disabled {
@@ -395,14 +412,15 @@ form .btn-primary:not(.button-group .btn-primary) {
     gap: 15px !important;
     margin-top: 30px !important;
     width: 100% !important;
-    align-items: center !important;
-    justify-content: center !important;
+    align-items: stretch !important;
+    justify-content: space-between !important;
+    box-sizing: border-box !important;
 }
 
 .button-group .btn {
-    flex: 1;
-    min-width: 140px !important;
-    max-width: 200px !important;
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    max-width: none !important;
     padding: 14px 20px !important;
     font-size: 16px !important;
     font-weight: 600 !important;
@@ -410,7 +428,10 @@ form .btn-primary:not(.button-group .btn-primary) {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    height: 48px !important;
+    height: 50px !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    border-radius: 10px !important;
 }
 
 /* OTP Verification */
