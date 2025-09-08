@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Onboarding - Welcome</title>
+    <link rel="stylesheet" href="onboarding-styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Progress Indicator -->
+        <div class="progress-bar">
+            <div class="progress-step active" data-step="1">
+                <span class="step-number">1</span>
+                <span class="step-label">Details</span>
+            </div>
+            <div class="progress-step" data-step="2">
+                <span class="step-number">2</span>
+                <span class="step-label">Verify</span>
+            </div>
+            <div class="progress-step" data-step="3">
+                <span class="step-number">3</span>
+                <span class="step-label">Schedule</span>
+            </div>
+            <div class="progress-step" data-step="4">
+                <span class="step-number">4</span>
+                <span class="step-label">Complete</span>
+            </div>
+        </div>
+
+        <!-- Step 1: User Details Form -->
+        <div class="form-container" id="step1">
+            <div class="form-header">
+                <h1>Welcome to Your Health Journey</h1>
+                <p>Let's get started by gathering some basic information</p>
+            </div>
+
+            <form id="userDetailsForm">
+                <div class="form-group">
+                    <label for="fullName">Full Name *</label>
+                    <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="mobileNumber">Mobile Number *</label>
+                        <input type="tel" id="mobileNumber" name="mobileNumber" required placeholder="+91 XXXXX XXXXX" pattern="[0-9+\s-]{10,}">
+                        <span class="error-message"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="your@email.com">
+                        <span class="error-message"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="hba1c">Latest HbA1c (%)</label>
+                        <input type="number" id="hba1c" name="hba1c" step="0.1" min="0" max="15" placeholder="e.g., 6.5">
+                        <span class="helper-text">Optional: Your most recent HbA1c reading</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="height">Height (cm) *</label>
+                        <input type="number" id="height" name="height" required min="50" max="250" placeholder="e.g., 170">
+                        <span class="error-message"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="weight">Weight (kg) *</label>
+                        <input type="number" id="weight" name="weight" required step="0.1" min="20" max="300" placeholder="e.g., 70">
+                        <span class="error-message"></span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Continue</button>
+            </form>
+        </div>
+
+        <!-- Step 2: OTP Verification -->
+        <div class="form-container hidden" id="step2">
+            <div class="form-header">
+                <h1>Verify Your Email</h1>
+                <p>We've sent a verification code to <span id="emailDisplay"></span></p>
+            </div>
+
+            <form id="otpForm">
+                <div class="otp-container">
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+                </div>
+                <span class="error-message" id="otpError"></span>
+
+                <div class="resend-container">
+                    <p>Didn't receive the code? <button type="button" id="resendOtp" class="link-btn">Resend OTP</button></p>
+                    <p class="timer" id="resendTimer"></p>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary" onclick="goToStep(1)">Back</button>
+                    <button type="submit" class="btn btn-primary">Verify & Continue</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Step 3: Schedule Consultation -->
+        <div class="form-container hidden" id="step3">
+            <div class="form-header">
+                <h1>Schedule Your FREE Consultation</h1>
+                <p>Book your first session with our expert nutritionist</p>
+            </div>
+
+            <div class="nutritionist-info">
+                <img src="nutritionist-placeholder.jpg" alt="Nutritionist" class="nutritionist-avatar">
+                <div class="nutritionist-details">
+                    <h3 id="nutritionistName">Dr. Sarah Johnson</h3>
+                    <p>Certified Nutritionist & Diabetes Specialist</p>
+                    <div class="rating">
+                        <span class="stars">★★★★★</span>
+                        <span>4.9 (120+ consultations)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="calendarContainer">
+                <!-- Calendar will be loaded here -->
+            </div>
+
+            <div class="selected-slot hidden" id="selectedSlotContainer">
+                <h3>Selected Time Slot</h3>
+                <p id="selectedSlotDisplay"></p>
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="btn btn-secondary" onclick="goToStep(2)">Back</button>
+                <button type="button" class="btn btn-primary" id="confirmBooking" disabled>Confirm Booking</button>
+            </div>
+        </div>
+
+        <!-- Step 4: Confirmation & App Download -->
+        <div class="form-container hidden" id="step4">
+            <div class="success-container">
+                <div class="success-icon">✓</div>
+                <h1>Congratulations!</h1>
+                <p>Your profile has been created successfully</p>
+            </div>
+
+            <div class="confirmation-details">
+                <h3>Appointment Confirmed</h3>
+                <div class="appointment-card">
+                    <div class="appointment-info">
+                        <p><strong>Date & Time:</strong> <span id="appointmentDateTime"></span></p>
+                        <p><strong>Nutritionist:</strong> <span id="appointmentNutritionist"></span></p>
+                        <p><strong>Type:</strong> Free Consultation (45 minutes)</p>
+                    </div>
+                </div>
+                <p class="confirmation-note">Confirmation details have been sent to your email</p>
+            </div>
+
+            <div class="app-download-section">
+                <h3>Get Started with Our App</h3>
+                <p>Access your personalized health dashboard on the go</p>
+                
+                <div class="deep-link-container">
+                    <p class="deep-link-label">Your Personal Login Link:</p>
+                    <div class="deep-link-display">
+                        <code id="deepLinkUrl"></code>
+                        <button class="copy-btn" onclick="copyDeepLink()">Copy</button>
+                    </div>
+                </div>
+
+                <button class="btn btn-download" id="downloadAppBtn">
+                    <span class="download-icon">📱</span>
+                    Download App
+                </button>
+
+                <div class="app-features">
+                    <div class="feature">
+                        <span class="feature-icon">📊</span>
+                        <span>Track Progress</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🍎</span>
+                        <span>Meal Plans</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">💬</span>
+                        <span>Chat Support</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay hidden" id="loadingOverlay">
+            <div class="spinner"></div>
+            <p id="loadingText">Processing...</p>
+        </div>
+    </div>
+
+    <script src="onboarding-script.js"></script>
+</body>
+</html>
