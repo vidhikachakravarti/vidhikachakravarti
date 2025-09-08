@@ -396,17 +396,21 @@ form .btn-primary:not(.button-group .btn-primary) {
     margin-top: 30px !important;
     width: 100% !important;
     align-items: center !important;
+    justify-content: center !important;
 }
 
 .button-group .btn {
     flex: 1;
     min-width: 140px !important;
-    max-width: none !important;
+    max-width: 200px !important;
     padding: 14px 20px !important;
-    width: auto !important;
     font-size: 16px !important;
     font-weight: 600 !important;
     text-align: center !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 48px !important;
 }
 
 /* OTP Verification */
@@ -506,13 +510,20 @@ form .btn-primary:not(.button-group .btn-primary) {
     margin-bottom: 25px;
 }
 
-.nutritionist-avatar {
+.nutritionist-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 80px;
     height: 80px;
+    background: linear-gradient(135deg, var(--color-purple) 0%, var(--color-dark-purple) 100%);
     border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid var(--color-white);
-    box-shadow: 0 4px 12px rgba(40, 4, 112, 0.1);
+    box-shadow: 0 4px 12px rgba(40, 4, 112, 0.2);
+}
+
+.doctor-icon {
+    font-size: 32px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
 }
 
 .nutritionist-details h3 {
@@ -524,6 +535,23 @@ form .btn-primary:not(.button-group .btn-primary) {
 .nutritionist-details p {
     color: var(--color-gray);
     font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.specialties {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.specialty-tag {
+    background: linear-gradient(135deg, var(--color-light-purple) 0%, var(--color-medium-purple) 100%);
+    color: var(--color-darkest);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid var(--color-purple);
 }
 
 /* Calendar Container */
