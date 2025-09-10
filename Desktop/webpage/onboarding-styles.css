@@ -1015,14 +1015,15 @@ form .btn-primary:not(.button-group .btn-primary) {
 }
 
 .program-item {
-    background: var(--color-white);
-    border-radius: 12px;
-    border: 2px solid var(--color-light-purple);
+    background: linear-gradient(135deg, var(--color-white) 0%, var(--color-lightest) 50%, var(--color-light-purple) 100%);
+    border-radius: 8px;
+    border: 1px solid var(--color-light-purple);
     overflow: hidden;
     position: relative;
     animation: cardSlideIn 0.6s ease forwards;
     opacity: 0;
     transform: translateY(20px);
+    box-shadow: 0 2px 8px rgba(40, 4, 112, 0.1);
 }
 
 .program-card {
@@ -1041,13 +1042,6 @@ form .btn-primary:not(.button-group .btn-primary) {
     }
 }
 
-.program-item.featured {
-    border: 2px solid var(--color-purple);
-}
-
-.program-item.featured .program-card {
-    background: linear-gradient(135deg, var(--color-lightest) 0%, var(--color-light-purple) 100%);
-}
 
 .program-item:hover {
     transform: translateY(-2px);
@@ -1058,18 +1052,6 @@ form .btn-primary:not(.button-group .btn-primary) {
     box-shadow: 0 8px 30px rgba(159, 123, 255, 0.15);
 }
 
-.popular-badge {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    background: var(--color-purple);
-    color: var(--color-white);
-    padding: 4px 8px;
-    border-radius: 12px;
-    font-size: 11px;
-    font-weight: 600;
-    z-index: 10;
-}
 
 @keyframes badgePulse {
     0%, 100% { transform: scale(1); }
@@ -1077,28 +1059,31 @@ form .btn-primary:not(.button-group .btn-primary) {
 }
 
 .program-main {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
     align-items: center;
-    gap: 16px;
-    padding: 20px;
+    gap: 12px;
+    padding: 16px;
     cursor: pointer;
     transition: background-color 0.2s ease;
+    min-height: 60px;
 }
 
 .program-main:hover {
-    background: var(--color-lightest);
+    background: rgba(255, 255, 255, 0.3);
 }
 
 .program-icon {
-    font-size: 24px;
-    width: 40px;
-    height: 40px;
+    font-size: 20px;
+    width: 36px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--color-light-purple);
-    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
     flex-shrink: 0;
+    border: 1px solid var(--color-light-purple);
 }
 
 @keyframes iconBounce {
@@ -1107,23 +1092,27 @@ form .btn-primary:not(.button-group .btn-primary) {
 }
 
 .program-info {
-    flex: 1;
     min-width: 0;
+    overflow: hidden;
 }
 
 .program-name {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     color: var(--color-darkest);
-    margin: 0 0 4px 0;
-    line-height: 1.3;
+    margin: 0 0 2px 0;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .program-duration {
     color: var(--color-gray);
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
     margin: 0;
+    white-space: nowrap;
 }
 
 .program-pricing {
@@ -1132,14 +1121,17 @@ form .btn-primary:not(.button-group .btn-primary) {
     align-items: flex-end;
     gap: 2px;
     flex-shrink: 0;
+    text-align: right;
+    min-width: 60px;
 }
 
 .expand-btn {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     border: none;
-    background: var(--color-light-purple);
-    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid var(--color-light-purple);
+    border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1151,11 +1143,12 @@ form .btn-primary:not(.button-group .btn-primary) {
 .expand-btn:hover {
     background: var(--color-purple);
     color: var(--color-white);
-    transform: scale(1.1);
+    border-color: var(--color-purple);
+    transform: scale(1.05);
 }
 
 .expand-icon {
-    font-size: 12px;
+    font-size: 10px;
     transition: transform 0.3s ease;
 }
 
@@ -1164,23 +1157,25 @@ form .btn-primary:not(.button-group .btn-primary) {
 }
 
 .offer-price {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     color: var(--color-darkest);
     margin: 0;
+    white-space: nowrap;
 }
 
 .mrp {
-    font-size: 12px;
+    font-size: 10px;
     color: var(--color-gray);
     text-decoration: line-through;
     margin: 0;
+    white-space: nowrap;
 }
 
 .program-details {
-    padding: 0 20px 20px;
-    border-top: 1px solid var(--color-light-purple);
-    background: var(--color-lightest);
+    padding: 0 16px 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.2);
     max-height: 0;
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1188,9 +1183,9 @@ form .btn-primary:not(.button-group .btn-primary) {
 }
 
 .program-details.expanded {
-    max-height: 500px;
+    max-height: 400px;
     opacity: 1;
-    padding-top: 20px;
+    padding-top: 16px;
 }
 
 @keyframes savingsPulse {
@@ -1245,9 +1240,9 @@ form .btn-primary:not(.button-group .btn-primary) {
 }
 
 .program-selection {
-    padding: 16px 20px;
-    border-top: 1px solid var(--color-light-purple);
-    background: var(--color-white);
+    padding: 12px 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.3);
 }
 
 .program-selection input[type="radio"] {
@@ -1309,12 +1304,9 @@ form .btn-primary:not(.button-group .btn-primary) {
 
 .program-item.selected {
     border-color: var(--color-purple);
-    box-shadow: 0 4px 20px rgba(159, 123, 255, 0.2);
-    transform: translateY(-2px);
-}
-
-.program-item.selected .program-card {
-    background: linear-gradient(135deg, var(--color-lightest) 0%, rgba(159, 123, 255, 0.05) 100%);
+    box-shadow: 0 4px 20px rgba(159, 123, 255, 0.3);
+    transform: translateY(-1px);
+    background: linear-gradient(135deg, var(--color-lightest) 0%, var(--color-light-purple) 50%, rgba(159, 123, 255, 0.2) 100%);
 }
 
 @keyframes selectPulse {
@@ -1464,51 +1456,111 @@ form .btn-primary:not(.button-group .btn-primary) {
 }
 
 @media (max-width: 768px) {
-    .programs-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
+    .container {
+        padding: 0 12px;
     }
     
     .hero-title {
-        font-size: 32px;
+        font-size: 28px;
     }
     
     .hero-subtitle {
-        font-size: 16px;
+        font-size: 14px;
     }
     
-    .program-card {
-        padding: 25px 20px;
+    .programs-list {
+        gap: 12px;
+    }
+    
+    .program-main {
+        grid-template-columns: auto 1fr auto auto;
+        gap: 8px;
+        padding: 12px;
+        min-height: 50px;
+    }
+    
+    .program-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+    }
+    
+    .program-name {
+        font-size: 13px;
+    }
+    
+    .program-duration {
+        font-size: 10px;
+    }
+    
+    .offer-price {
+        font-size: 14px;
+    }
+    
+    .mrp {
+        font-size: 9px;
+    }
+    
+    .expand-btn {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .expand-icon {
+        font-size: 8px;
+    }
+    
+    .program-details {
+        padding: 0 12px 12px;
+    }
+    
+    .program-details.expanded {
+        padding-top: 12px;
+    }
+    
+    .program-selection {
+        padding: 10px 12px;
+    }
+    
+    .radio-label {
+        font-size: 13px;
+        gap: 8px;
+    }
+    
+    .radio-custom {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .radio-custom::after {
+        width: 6px;
+        height: 6px;
     }
     
     .consultation-highlight {
-        flex-direction: column;
-        text-align: center;
-        gap: 15px;
-    }
-    
-    .consultation-text {
-        text-align: center;
+        padding: 16px;
     }
     
     .consultation-text h3 {
-        font-size: 24px;
+        font-size: 20px;
+    }
+    
+    .consultation-text p {
+        font-size: 13px;
     }
     
     .btn-large {
-        min-width: auto;
         width: 100%;
-        padding: 16px 20px;
-        font-size: 16px;
+        padding: 14px 20px;
+        font-size: 15px;
     }
     
-    .app-access-note {
-        flex-direction: column;
-        gap: 10px;
+    .app-access-note p {
+        font-size: 13px;
     }
     
     .form-container {
-        padding: 30px 20px;
+        padding: 24px 16px;
     }
     
     .form-row {
@@ -1543,33 +1595,93 @@ form .btn-primary:not(.button-group .btn-primary) {
 }
 
 @media (max-width: 480px) {
-    .otp-container {
-        gap: 8px;
-    }
-    
-    .otp-input {
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
-    }
-    
-    .form-header h1 {
-        font-size: 24px;
+    .container {
+        padding: 0 8px;
     }
     
     .hero-title {
-        font-size: 28px;
+        font-size: 24px;
+        line-height: 1.3;
     }
     
-    .program-header h3 {
-        font-size: 20px;
+    .hero-subtitle {
+        font-size: 13px;
+    }
+    
+    .program-main {
+        gap: 6px;
+        padding: 10px;
+    }
+    
+    .program-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 16px;
+    }
+    
+    .program-name {
+        font-size: 12px;
+    }
+    
+    .program-duration {
+        font-size: 9px;
     }
     
     .offer-price {
-        font-size: 30px;
+        font-size: 13px;
+    }
+    
+    .mrp {
+        font-size: 8px;
+    }
+    
+    .expand-btn {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .expand-icon {
+        font-size: 7px;
+    }
+    
+    .radio-label {
+        font-size: 12px;
+    }
+    
+    .radio-custom {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .radio-custom::after {
+        width: 5px;
+        height: 5px;
     }
     
     .consultation-text h3 {
-        font-size: 20px;
+        font-size: 18px;
+    }
+    
+    .consultation-text p {
+        font-size: 12px;
+    }
+    
+    .btn-large {
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+    
+    .otp-container {
+        gap: 6px;
+    }
+    
+    .otp-input {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+    }
+    
+    .form-header h1 {
+        font-size: 22px;
     }
 }
