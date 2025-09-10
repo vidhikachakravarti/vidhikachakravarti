@@ -1020,6 +1020,12 @@ form .btn-primary:not(.button-group .btn-primary) {
     margin-bottom: 32px;
 }
 
+/* Hide progress bar on program selection page */
+.program-selection .progress-bar,
+#programSelection ~ .progress-bar {
+    display: none;
+}
+
 .program-item {
     background: linear-gradient(135deg, var(--color-white) 0%, var(--color-lightest) 30%, var(--color-light-purple) 100%);
     border-radius: 12px;

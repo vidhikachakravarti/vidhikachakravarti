@@ -687,6 +687,12 @@ function handleProceedToOnboarding() {
     // Show selected program summary
     updateSelectedProgramSummary();
     
+    // Show progress bar and go to step 1
+    const progressBar = document.getElementById('progressBar');
+    if (progressBar) {
+        progressBar.style.display = 'flex';
+    }
+    
     goToStep(1);
 }
 
@@ -699,8 +705,18 @@ function updateSelectedProgramSummary() {
 }
 
 function goToPrograms() {
-    document.getElementById('step1').classList.add('hidden');
-    document.getElementById('progressBar').classList.add('hidden');
+    // Hide all form steps
+    document.querySelectorAll('.form-container').forEach(container => {
+        container.classList.add('hidden');
+    });
+    
+    // Hide progress bar and show program selection
+    const progressBar = document.getElementById('progressBar');
+    if (progressBar) {
+        progressBar.style.display = 'none';
+        progressBar.classList.add('hidden');
+    }
+    
     document.getElementById('programSelection').classList.remove('hidden');
     currentStep = 'programs';
 }
