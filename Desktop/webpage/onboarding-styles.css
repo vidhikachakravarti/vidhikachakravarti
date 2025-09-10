@@ -1249,25 +1249,19 @@ form .btn-primary:not(.button-group .btn-primary) {
 }
 
 .feature {
-    display: flex;
-    align-items: baseline;
-    gap: 6px;
-    margin-bottom: 8px;
+    display: block;
+    margin-bottom: 4px;
     font-size: 13px;
     line-height: 1.4;
     color: var(--color-darkest);
-    word-wrap: break-word;
-    overflow-wrap: break-word;
 }
 
 .feature .checkmark {
     color: var(--color-success);
     font-weight: 700;
     font-size: 12px;
-    flex-shrink: 0;
-    display: inline-block;
-    line-height: 1;
-    vertical-align: baseline;
+    display: inline;
+    margin-right: 4px;
 }
 
 .best-suited {
@@ -1577,17 +1571,15 @@ form .btn-primary:not(.button-group .btn-primary) {
     
     .feature {
         font-size: 12px;
-        margin-bottom: 7px;
-        gap: 5px;
-        align-items: baseline;
+        margin-bottom: 4px;
         line-height: 1.4;
+        display: block;
     }
     
     .feature .checkmark {
         font-size: 11px;
-        display: inline-block;
-        line-height: 1;
-        vertical-align: baseline;
+        display: inline;
+        margin-right: 4px;
     }
     
     .program-selection {
@@ -1734,17 +1726,15 @@ form .btn-primary:not(.button-group .btn-primary) {
     
     .feature {
         font-size: 11px;
-        margin-bottom: 6px;
-        gap: 4px;
-        align-items: baseline;
+        margin-bottom: 4px;
         line-height: 1.4;
+        display: block;
     }
     
     .feature .checkmark {
         font-size: 10px;
-        display: inline-block;
-        line-height: 1;
-        vertical-align: baseline;
+        display: inline;
+        margin-right: 3px;
     }
     
     .radio-label {
