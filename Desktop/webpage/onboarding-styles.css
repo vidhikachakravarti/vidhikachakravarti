@@ -894,11 +894,19 @@ form .btn-primary:not(.button-group .btn-primary) {
     margin-top: 20px;
 }
 
-.feature {
+.app-features .feature {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 8px;
+    position: relative;
+    padding-left: 0 !important;
+    margin-bottom: 0;
+}
+
+.app-features .feature::before {
+    display: none !important;
+    content: none !important;
 }
 
 .feature-icon {
