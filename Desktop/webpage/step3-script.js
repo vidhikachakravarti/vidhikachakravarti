@@ -68,7 +68,7 @@ function initializeGoogleCalendar(calendarId) {
         <div class="mock-calendar">
             <div class="calendar-header">
                 <h4>Select your preferred time slot</h4>
-                <p>Free Consultation - 30 minutes</p>
+                <p>Free Consultation - 15 minutes</p>
             </div>
             <div class="time-slots">
                 ${generateTimeSlots()}
@@ -98,11 +98,20 @@ function initializeGoogleCalendar(calendarId) {
     });
 }
 
-// Generate mock time slots for the prototype
+// Generate mock time slots for the prototype (15-minute intervals)
 function generateTimeSlots() {
     const slots = [];
     const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-    const times = ['9:00 AM', '10:00 AM', '11:00 AM', '2:00 PM', '3:00 PM', '4:00 PM'];
+    
+    // Generate 15-minute time slots
+    const times = [
+        '9:00 AM', '9:15 AM', '9:30 AM', '9:45 AM',
+        '10:00 AM', '10:15 AM', '10:30 AM', '10:45 AM',
+        '11:00 AM', '11:15 AM', '11:30 AM', '11:45 AM',
+        '2:00 PM', '2:15 PM', '2:30 PM', '2:45 PM',
+        '3:00 PM', '3:15 PM', '3:30 PM', '3:45 PM',
+        '4:00 PM', '4:15 PM', '4:30 PM', '4:45 PM'
+    ];
     
     for (let i = 0; i < 3; i++) {
         const date = new Date();
@@ -114,12 +123,13 @@ function generateTimeSlots() {
         slots.push('<div class="slot-times">');
         
         times.forEach((time, index) => {
-            const available = Math.random() > 0.2; // More slots available now
+            const available = Math.random() > 0.3; // Show more variety with 15-min slots
             if (available) { // Only show available slots
                 const datetime = new Date(date);
-                const [hour, period] = time.split(' ');
-                const [h, m] = hour.split(':');
-                datetime.setHours(period === 'PM' && h !== '12' ? parseInt(h) + 12 : parseInt(h), parseInt(m || 0));
+                const [hourMin, period] = time.split(' ');
+                const [h, m] = hourMin.split(':');
+                const hour24 = period === 'PM' && h !== '12' ? parseInt(h) + 12 : parseInt(h);
+                datetime.setHours(hour24, parseInt(m));
                 
                 slots.push(`
                     <button class="time-slot" 

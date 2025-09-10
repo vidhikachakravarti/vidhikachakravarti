@@ -311,7 +311,7 @@ function initializeGoogleCalendar(calendarId) {
         <div class="mock-calendar">
             <div class="calendar-header">
                 <h4>Select your preferred time slot</h4>
-                <p>Free Consultation - 30 minutes</p>
+                <p>Free Consultation - 15 minutes</p>
             </div>
             <div class="time-slots">
                 ${generateTimeSlots()}
