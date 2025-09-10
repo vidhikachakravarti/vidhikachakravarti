@@ -1051,15 +1051,6 @@ form .btn-primary:not(.button-group .btn-primary) {
     margin-bottom: 32px;
 }
 
-/* Hide progress bar on program selection page */
-#programSelection:not(.hidden) ~ .progress-bar {
-    display: none !important;
-}
-
-/* Ensure progress bar shows when program selection is hidden */
-#programSelection.hidden ~ .progress-bar {
-    display: flex !important;
-}
 
 .program-item {
     background: linear-gradient(135deg, var(--color-white) 0%, var(--color-lightest) 30%, var(--color-light-purple) 100%);

@@ -724,59 +724,11 @@ function goToPrograms() {
         container.classList.add('hidden');
     });
     
-    // Hide progress bar and show program selection
-    const progressBar = document.getElementById('progressBar');
-    if (progressBar) {
-        progressBar.style.display = 'none';
-        progressBar.classList.add('hidden');
-    }
-    
+    // Show program selection
     document.getElementById('programSelection').classList.remove('hidden');
     currentStep = 'programs';
 }
 
-// Navigation
-function goToStep(step) {
-    console.log(`goToStep called with step: ${step}`);
-    
-    // Hide all steps except program selection
-    document.querySelectorAll('.form-container').forEach(container => {
-        container.classList.add('hidden');
-    });
-    
-    // Show target step
-    const targetStep = document.getElementById(`step${step}`);
-    if (targetStep) {
-        targetStep.classList.remove('hidden');
-        console.log(`Step ${step} should now be visible`);
-    } else {
-        console.error(`Step ${step} element not found!`);
-    }
-    
-    // Update progress bar
-    updateProgressBar(step);
-    
-    currentStep = step;
-}
-
-// Update Progress Bar
-function updateProgressBar(step) {
-    const steps = document.querySelectorAll('.progress-step');
-    
-    steps.forEach((stepElement, index) => {
-        const stepNumber = index + 1;
-        
-        if (stepNumber < step) {
-            stepElement.classList.add('completed');
-            stepElement.classList.remove('active');
-        } else if (stepNumber === step) {
-            stepElement.classList.add('active');
-            stepElement.classList.remove('completed');
-        } else {
-            stepElement.classList.remove('active', 'completed');
-        }
-    });
-}
 
 // Loading State
 function showLoading(text = 'Processing...') {
@@ -794,7 +746,6 @@ function simulateAPICall(delay = 1500) {
 }
 
 // Make functions available globally for onclick handlers
-window.goToStep = goToStep;
 window.goToPrograms = goToPrograms;
 window.copyDeepLink = copyDeepLink;
 
