@@ -1203,7 +1203,7 @@ form .btn-primary:not(.button-group .btn-primary) {
 }
 
 .program-details {
-    padding: 0 16px 16px;
+    padding: 0 16px 20px;
     border-top: 1px solid var(--color-light-purple);
     background: linear-gradient(135deg, var(--color-lightest) 0%, rgba(159, 123, 255, 0.1) 100%);
     max-height: 0;
@@ -1213,9 +1213,9 @@ form .btn-primary:not(.button-group .btn-primary) {
 }
 
 .program-details.expanded {
-    max-height: 400px;
+    max-height: 500px;
     opacity: 1;
-    padding-top: 16px;
+    padding-top: 20px;
 }
 
 @keyframes savingsPulse {
@@ -1235,38 +1235,45 @@ form .btn-primary:not(.button-group .btn-primary) {
 }
 
 .program-features {
-    margin-bottom: 16px;
+    margin-bottom: 20px;
 }
 
 .feature {
     display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 8px;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
     font-size: 13px;
-    line-height: 1.4;
+    line-height: 1.5;
     color: var(--color-darkest);
     opacity: 1;
     transform: none;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .feature .checkmark {
     color: var(--color-success);
     font-weight: 600;
-    font-size: 12px;
+    font-size: 14px;
     flex-shrink: 0;
-    width: 16px;
+    width: 18px;
+    margin-top: 1px;
 }
 
 .best-suited {
-    background: var(--color-white);
-    padding: 10px;
-    border-radius: 6px;
-    font-size: 11px;
+    background: linear-gradient(135deg, var(--color-white) 0%, var(--color-lightest) 100%);
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-size: 12px;
     color: var(--color-darkest);
-    line-height: 1.4;
-    margin-top: 12px;
-    border: 1px solid var(--color-light-purple);
+    line-height: 1.5;
+    margin-top: 16px;
+    border: 2px solid var(--color-light-purple);
+    box-shadow: 0 2px 8px rgba(40, 4, 112, 0.08);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 .program-selection {
@@ -1544,11 +1551,25 @@ form .btn-primary:not(.button-group .btn-primary) {
     }
     
     .program-details {
-        padding: 0 12px 12px;
+        padding: 0 12px 16px;
     }
     
     .program-details.expanded {
-        padding-top: 12px;
+        padding-top: 16px;
+        max-height: 450px;
+    }
+    
+    .best-suited {
+        font-size: 11px;
+        padding: 10px 12px;
+        margin-top: 14px;
+        line-height: 1.6;
+    }
+    
+    .feature {
+        font-size: 12px;
+        margin-bottom: 8px;
+        gap: 8px;
     }
     
     .program-selection {
@@ -1675,6 +1696,33 @@ form .btn-primary:not(.button-group .btn-primary) {
     
     .expand-icon {
         font-size: 7px;
+    }
+    
+    .program-details {
+        padding: 0 10px 14px;
+    }
+    
+    .program-details.expanded {
+        padding-top: 14px;
+        max-height: 400px;
+    }
+    
+    .best-suited {
+        font-size: 10px;
+        padding: 8px 10px;
+        margin-top: 12px;
+        line-height: 1.7;
+    }
+    
+    .feature {
+        font-size: 11px;
+        margin-bottom: 6px;
+        gap: 6px;
+    }
+    
+    .feature .checkmark {
+        font-size: 12px;
+        width: 16px;
     }
     
     .radio-label {
