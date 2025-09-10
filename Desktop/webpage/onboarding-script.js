@@ -579,7 +579,40 @@ async function resendOTP() {
 function initializeProgramSelection() {
     const programRadios = document.querySelectorAll('input[name="selectedProgram"]');
     const proceedButton = document.getElementById('proceedToOnboarding');
+    const expandButtons = document.querySelectorAll('.expand-btn');
     
+    // Initialize expand/collapse functionality
+    expandButtons.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const programCard = this.closest('.program-card');
+            const programDetails = programCard.querySelector('.program-details');
+            const expandIcon = this.querySelector('.expand-icon');
+            
+            // Close other expanded cards
+            document.querySelectorAll('.program-details.expanded').forEach(details => {
+                if (details !== programDetails) {
+                    details.classList.remove('expanded');
+                    const otherBtn = details.closest('.program-card').querySelector('.expand-btn');
+                    otherBtn.classList.remove('expanded');
+                }
+            });
+            
+            // Toggle current card
+            const isExpanded = programDetails.classList.contains('expanded');
+            if (isExpanded) {
+                programDetails.classList.remove('expanded');
+                this.classList.remove('expanded');
+            } else {
+                programDetails.classList.add('expanded');
+                this.classList.add('expanded');
+            }
+        });
+    });
+    
+    // Program selection functionality
     programRadios.forEach(radio => {
         radio.addEventListener('change', function() {
             if (this.checked) {
@@ -591,11 +624,21 @@ function initializeProgramSelection() {
                 };
                 proceedButton.disabled = false;
                 
-                // Add visual feedback
-                document.querySelectorAll('.program-card').forEach(card => {
-                    card.classList.remove('selected');
+                // Add visual feedback to program items
+                document.querySelectorAll('.program-item').forEach(item => {
+                    item.classList.remove('selected');
                 });
-                this.closest('.program-card').classList.add('selected');
+                this.closest('.program-item').classList.add('selected');
+            }
+        });
+    });
+    
+    // Make program main area clickable to expand
+    document.querySelectorAll('.program-main').forEach(main => {
+        main.addEventListener('click', function() {
+            const expandBtn = this.querySelector('.expand-btn');
+            if (expandBtn) {
+                expandBtn.click();
             }
         });
     });
@@ -716,3 +759,11 @@ function simulateAPICall(delay = 1500) {
 window.goToStep = goToStep;
 window.goToPrograms = goToPrograms;
 window.copyDeepLink = copyDeepLink;
+
+// Add smooth scrolling to program selection
+function scrollToProgramSelection() {
+    const programSelection = document.getElementById('programSelection');
+    if (programSelection) {
+        programSelection.scrollIntoView({ behavior: 'smooth' });
+    }
+}

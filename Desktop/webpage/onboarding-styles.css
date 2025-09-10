@@ -1007,28 +1007,26 @@ form .btn-primary:not(.button-group .btn-primary) {
     }
 }
 
-.programs-grid {
+.programs-list {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    margin-bottom: 40px;
-    max-width: 600px;
-    margin: 0 auto 40px;
+    gap: 16px;
+    margin-bottom: 32px;
 }
 
-.program-card {
+.program-item {
     background: var(--color-white);
-    border-radius: 16px;
-    padding: 24px;
-    box-shadow: 0 4px 20px rgba(40, 4, 112, 0.08);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 12px;
     border: 2px solid var(--color-light-purple);
-    position: relative;
     overflow: hidden;
+    position: relative;
     animation: cardSlideIn 0.6s ease forwards;
     opacity: 0;
     transform: translateY(20px);
-    width: 100%;
+}
+
+.program-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .program-card:nth-child(1) { animation-delay: 0.1s; }
@@ -1043,33 +1041,34 @@ form .btn-primary:not(.button-group .btn-primary) {
     }
 }
 
-.program-card.featured {
+.program-item.featured {
     border: 2px solid var(--color-purple);
-    box-shadow: 0 6px 30px rgba(159, 123, 255, 0.15);
 }
 
-.program-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 30px rgba(40, 4, 112, 0.12);
-    border-color: var(--color-purple);
+.program-item.featured .program-card {
+    background: linear-gradient(135deg, var(--color-lightest) 0%, var(--color-light-purple) 100%);
 }
 
-.program-card.featured:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 40px rgba(159, 123, 255, 0.2);
+.program-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(40, 4, 112, 0.1);
+}
+
+.program-item.featured:hover {
+    box-shadow: 0 8px 30px rgba(159, 123, 255, 0.15);
 }
 
 .popular-badge {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    background: linear-gradient(135deg, var(--color-purple) 0%, var(--color-dark-purple) 100%);
+    top: 8px;
+    right: 8px;
+    background: var(--color-purple);
     color: var(--color-white);
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
     font-weight: 600;
-    animation: badgePulse 2s ease-in-out infinite;
+    z-index: 10;
 }
 
 @keyframes badgePulse {
@@ -1077,23 +1076,28 @@ form .btn-primary:not(.button-group .btn-primary) {
     50% { transform: scale(1.05); }
 }
 
-.program-header {
+.program-main {
     display: flex;
     align-items: center;
     gap: 16px;
-    margin-bottom: 20px;
-    text-align: left;
+    padding: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.program-main:hover {
+    background: var(--color-lightest);
 }
 
 .program-icon {
-    font-size: 32px;
-    width: 48px;
-    height: 48px;
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--color-lightest);
-    border-radius: 12px;
+    background: var(--color-light-purple);
+    border-radius: 10px;
     flex-shrink: 0;
 }
 
@@ -1102,71 +1106,91 @@ form .btn-primary:not(.button-group .btn-primary) {
     50% { transform: translateY(-5px); }
 }
 
-.program-header-content {
+.program-info {
     flex: 1;
+    min-width: 0;
 }
 
-.program-header h3 {
-    font-size: 20px;
-    font-weight: 700;
+.program-name {
+    font-size: 16px;
+    font-weight: 600;
     color: var(--color-darkest);
-    margin-bottom: 4px;
+    margin: 0 0 4px 0;
     line-height: 1.3;
 }
 
 .program-duration {
-    color: var(--color-purple);
-    font-weight: 600;
-    font-size: 13px;
-    background: var(--color-light-purple);
-    padding: 4px 10px;
-    border-radius: 12px;
-    display: inline-block;
+    color: var(--color-gray);
+    font-size: 12px;
+    font-weight: 500;
+    margin: 0;
 }
 
-.pricing {
+.program-pricing {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    flex-shrink: 0;
+}
+
+.expand-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: var(--color-light-purple);
+    border-radius: 50%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: 16px;
-    padding: 16px;
-    background: var(--color-lightest);
-    border-radius: 12px;
-    border: 1px solid var(--color-light-purple);
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
 }
 
-.pricing-main {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
+.expand-btn:hover {
+    background: var(--color-purple);
+    color: var(--color-white);
+    transform: scale(1.1);
 }
 
-.pricing-savings {
-    text-align: right;
+.expand-icon {
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
+.expand-btn.expanded .expand-icon {
+    transform: rotate(180deg);
 }
 
 .offer-price {
-    font-size: 28px;
-    font-weight: 800;
+    font-size: 18px;
+    font-weight: 700;
     color: var(--color-darkest);
     margin: 0;
 }
 
 .mrp {
-    font-size: 16px;
+    font-size: 12px;
     color: var(--color-gray);
     text-decoration: line-through;
     margin: 0;
 }
 
-.savings {
-    background: var(--color-success);
-    color: var(--color-white);
-    padding: 4px 10px;
-    border-radius: 8px;
-    font-size: 12px;
-    font-weight: 600;
-    white-space: nowrap;
+.program-details {
+    padding: 0 20px 20px;
+    border-top: 1px solid var(--color-light-purple);
+    background: var(--color-lightest);
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+}
+
+.program-details.expanded {
+    max-height: 500px;
+    opacity: 1;
+    padding-top: 20px;
 }
 
 @keyframes savingsPulse {
@@ -1175,13 +1199,13 @@ form .btn-primary:not(.button-group .btn-primary) {
 }
 
 .program-description {
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
 .program-description p {
     color: var(--color-gray);
     line-height: 1.5;
-    font-size: 14px;
+    font-size: 13px;
     margin: 0;
 }
 
@@ -1204,54 +1228,93 @@ form .btn-primary:not(.button-group .btn-primary) {
 .feature .checkmark {
     color: var(--color-success);
     font-weight: 600;
-    font-size: 14px;
+    font-size: 12px;
     flex-shrink: 0;
+    width: 16px;
 }
 
 .best-suited {
-    background: var(--color-light-purple);
-    padding: 12px;
-    border-radius: 8px;
-    font-size: 12px;
+    background: var(--color-white);
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 11px;
     color: var(--color-darkest);
     line-height: 1.4;
-    margin-bottom: 16px;
-    border: 1px solid var(--color-purple);
+    margin-top: 12px;
+    border: 1px solid var(--color-light-purple);
 }
 
-.program-select {
-    margin-top: auto;
+.program-selection {
+    padding: 16px 20px;
+    border-top: 1px solid var(--color-light-purple);
+    background: var(--color-white);
 }
 
-.program-select input[type="radio"] {
+.program-selection input[type="radio"] {
     display: none;
 }
 
-.select-btn {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    background: var(--color-white);
-    color: var(--color-purple);
-    border: 2px solid var(--color-purple);
-    border-radius: 8px;
-    font-weight: 600;
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     cursor: pointer;
-    transition: all 0.3s ease;
     font-size: 14px;
-    text-align: center;
+    font-weight: 500;
+    color: var(--color-darkest);
+    transition: all 0.2s ease;
 }
 
-.select-btn:hover {
-    background: var(--color-lightest);
-    border-color: var(--color-dark-purple);
+.radio-custom {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--color-light-purple);
+    border-radius: 50%;
+    position: relative;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
 }
 
-.program-select input[type="radio"]:checked + .select-btn {
+.radio-custom::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
     background: var(--color-purple);
-    color: var(--color-white);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.2s ease;
+}
+
+.radio-label:hover .radio-custom {
     border-color: var(--color-purple);
-    box-shadow: 0 4px 15px rgba(159, 123, 255, 0.3);
+    background: var(--color-lightest);
+}
+
+.program-selection input[type="radio"]:checked + .radio-label .radio-custom {
+    border-color: var(--color-purple);
+    background: var(--color-white);
+}
+
+.program-selection input[type="radio"]:checked + .radio-label .radio-custom::after {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.program-selection input[type="radio"]:checked + .radio-label {
+    color: var(--color-purple);
+    font-weight: 600;
+}
+
+.program-item.selected {
+    border-color: var(--color-purple);
+    box-shadow: 0 4px 20px rgba(159, 123, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.program-item.selected .program-card {
+    background: linear-gradient(135deg, var(--color-lightest) 0%, rgba(159, 123, 255, 0.05) 100%);
 }
 
 @keyframes selectPulse {
