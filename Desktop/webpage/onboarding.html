@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Client Onboarding - Welcome</title>
+    <title>Transform Your Health Journey - Choose Your Program</title>
     <link rel="stylesheet" href="onboarding-styles.css">
 </head>
 <body>
@@ -14,7 +14,7 @@
         </div>
         
         <!-- Progress Indicator -->
-        <div class="progress-bar">
+        <div class="progress-bar hidden" id="progressBar">
             <div class="progress-step active" data-step="1">
                 <span class="step-number">1</span>
                 <span class="step-label">Details</span>
@@ -33,11 +33,192 @@
             </div>
         </div>
 
+        <!-- Program Selection Page -->
+        <div class="program-selection" id="programSelection">
+            <div class="hero-section">
+                <h1 class="hero-title">Transform Your Health with Expert-Guided Programs</h1>
+                <p class="hero-subtitle">Choose from our scientifically-backed programs designed to deliver real results. Start with a FREE consultation to discuss your goals.</p>
+            </div>
+
+            <div class="programs-grid">
+                <!-- Diabetes Management Light -->
+                <div class="program-card" data-program="diabetes-light">
+                    <div class="program-header">
+                        <div class="program-icon">🩺</div>
+                        <h3>Diabetes Management – Light</h3>
+                        <p class="program-duration">3 months</p>
+                    </div>
+                    
+                    <div class="pricing">
+                        <div class="offer-price">₹999</div>
+                        <div class="mrp">₹2,997</div>
+                        <div class="savings">Save ₹1,998</div>
+                    </div>
+
+                    <div class="program-description">
+                        <p>A light-touch program to help you take charge of your blood sugar levels. Guided by nutrition and lifestyle experts.</p>
+                    </div>
+
+                    <div class="program-features">
+                        <div class="feature">✅ 1 Doctor/Diabetologist consultation</div>
+                        <div class="feature">✅ 2 Nutritionist sessions + check-ins</div>
+                        <div class="feature">✅ Unlimited chat support</div>
+                        <div class="feature">✅ 22+ live Yoga/Exercise classes per month</div>
+                        <div class="feature">✅ AI-powered personalized diet & exercise plans</div>
+                        <div class="feature">✅ Health trackers & risk assessments</div>
+                    </div>
+
+                    <div class="best-suited">
+                        <strong>Best suited for:</strong> HbA1c > 5.7% or recently diagnosed diabetes (1–5 years)
+                    </div>
+
+                    <div class="program-select">
+                        <input type="radio" name="selectedProgram" id="diabetes-light" value="diabetes-light">
+                        <label for="diabetes-light" class="select-btn">Select Program</label>
+                    </div>
+                </div>
+
+                <!-- Diabetes Management Plus -->
+                <div class="program-card featured" data-program="diabetes-plus">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="program-header">
+                        <div class="program-icon">🩺⭐</div>
+                        <h3>Diabetes Management – Plus</h3>
+                        <p class="program-duration">3 months</p>
+                    </div>
+                    
+                    <div class="pricing">
+                        <div class="offer-price">₹1,999</div>
+                        <div class="mrp">₹5,997</div>
+                        <div class="savings">Save ₹3,998</div>
+                    </div>
+
+                    <div class="program-description">
+                        <p>High-touch plan for closer support. Achieve measurable HbA1c improvements (0.5–1% reduction).</p>
+                    </div>
+
+                    <div class="program-features">
+                        <div class="feature">✅ 2 Doctor/Diabetologist consultations</div>
+                        <div class="feature">✅ 4 Nutritionist sessions + check-ins</div>
+                        <div class="feature">✅ Unlimited expert chat support</div>
+                        <div class="feature">✅ 22+ live Yoga/Exercise classes per month</div>
+                        <div class="feature">✅ Personalized diet & exercise coaching</div>
+                        <div class="feature">✅ Wellness libraries & recipe book</div>
+                    </div>
+
+                    <div class="best-suited">
+                        <strong>Best suited for:</strong> HbA1c > 6.5% or living with diabetes for 1–5 years
+                    </div>
+
+                    <div class="program-select">
+                        <input type="radio" name="selectedProgram" id="diabetes-plus" value="diabetes-plus">
+                        <label for="diabetes-plus" class="select-btn">Select Program</label>
+                    </div>
+                </div>
+
+                <!-- Weight Management Light -->
+                <div class="program-card" data-program="weight-light">
+                    <div class="program-header">
+                        <div class="program-icon">⚖️</div>
+                        <h3>Weight Management – Light</h3>
+                        <p class="program-duration">3 months</p>
+                    </div>
+                    
+                    <div class="pricing">
+                        <div class="offer-price">₹999</div>
+                        <div class="mrp">₹2,997</div>
+                        <div class="savings">Save ₹1,998</div>
+                    </div>
+
+                    <div class="program-description">
+                        <p>Lighter support plan to kick-start sustainable weight loss with expert nutrition and exercise guidance.</p>
+                    </div>
+
+                    <div class="program-features">
+                        <div class="feature">✅ 2 Nutritionist sessions + check-ins</div>
+                        <div class="feature">✅ 2 Yoga/Exercise Coach sessions</div>
+                        <div class="feature">✅ Unlimited chat support with experts</div>
+                        <div class="feature">✅ 22+ live Yoga/Exercise classes per month</div>
+                        <div class="feature">✅ AI-powered diet & exercise guidance</div>
+                        <div class="feature">✅ Weight, steps, sleep trackers</div>
+                    </div>
+
+                    <div class="best-suited">
+                        <strong>Best suited for:</strong> BMI > 27 or managing related conditions (PCOS, hypertension, etc.)
+                    </div>
+
+                    <div class="program-select">
+                        <input type="radio" name="selectedProgram" id="weight-light" value="weight-light">
+                        <label for="weight-light" class="select-btn">Select Program</label>
+                    </div>
+                </div>
+
+                <!-- Weight Management Plus -->
+                <div class="program-card" data-program="weight-plus">
+                    <div class="program-header">
+                        <div class="program-icon">⚖️⭐</div>
+                        <h3>Weight Management – Plus</h3>
+                        <p class="program-duration">3 months</p>
+                    </div>
+                    
+                    <div class="pricing">
+                        <div class="offer-price">₹1,999</div>
+                        <div class="mrp">₹5,997</div>
+                        <div class="savings">Save ₹3,998</div>
+                    </div>
+
+                    <div class="program-description">
+                        <p>Intensive, high-touch plan with structured coaching for those needing closer supervision to meet weight goals.</p>
+                    </div>
+
+                    <div class="program-features">
+                        <div class="feature">✅ 4 Nutritionist sessions + check-ins</div>
+                        <div class="feature">✅ 4 Yoga/Exercise Coach sessions</div>
+                        <div class="feature">✅ Unlimited expert chat support</div>
+                        <div class="feature">✅ 22+ live Yoga/Exercise classes per month</div>
+                        <div class="feature">✅ Personalized nutrition plans by experts</div>
+                        <div class="feature">✅ Wellness libraries, challenges & recipes</div>
+                    </div>
+
+                    <div class="best-suited">
+                        <strong>Best suited for:</strong> BMI > 30 or weight management for other health conditions
+                    </div>
+
+                    <div class="program-select">
+                        <input type="radio" name="selectedProgram" id="weight-plus" value="weight-plus">
+                        <label for="weight-plus" class="select-btn">Select Program</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="app-access-note">
+                <div class="app-icon">📱</div>
+                <p><strong>All programs include:</strong> Full access to the Lillia app for easy scheduling, progress tracking, and 24/7 support</p>
+            </div>
+
+            <div class="consultation-cta">
+                <div class="consultation-highlight">
+                    <div class="consultation-icon">💬</div>
+                    <div class="consultation-text">
+                        <h3>Start with a FREE Consultation</h3>
+                        <p>Discuss your health goals and get personalized recommendations from our expert nutritionist before committing to any program.</p>
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-large" id="proceedToOnboarding" disabled>
+                    Book FREE Consultation & Continue
+                </button>
+            </div>
+        </div>
+
         <!-- Step 1: User Details Form -->
-        <div class="form-container" id="step1">
+        <div class="form-container hidden" id="step1">
             <div class="form-header">
-                <h1>Welcome to Your Health Journey</h1>
-                <p>Let's get started by gathering some basic information</p>
+                <h1>Tell Us About Yourself</h1>
+                <p>Let's gather some basic information to personalize your experience</p>
+            </div>
+
+            <div class="selected-program-summary" id="selectedProgramSummary">
+                <!-- Selected program details will be inserted here -->
             </div>
 
             <form id="userDetailsForm">
@@ -82,7 +263,10 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Continue</button>
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary" onclick="goToPrograms()">Back to Programs</button>
+                    <button type="submit" class="btn btn-primary">Continue</button>
+                </div>
             </form>
         </div>
 

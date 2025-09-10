@@ -19,12 +19,14 @@ const GOOGLE_CALENDAR_CONFIG = {
 
 // State management
 let userData = {};
-let currentStep = 1;
+let selectedProgram = null;
+let currentStep = 'programs';
 let otpTimer = null;
 let selectedTimeSlot = null;
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
+    initializeProgramSelection();
     initializeFormValidation();
     initializeOTPInputs();
     setupEventListeners();
@@ -136,6 +138,7 @@ function setupEventListeners() {
     document.getElementById('otpForm').addEventListener('submit', handleOTPSubmit);
     document.getElementById('resendOtp').addEventListener('click', resendOTP);
     document.getElementById('downloadAppBtn').addEventListener('click', handleAppDownload);
+    document.getElementById('proceedToOnboarding').addEventListener('click', handleProceedToOnboarding);
 }
 
 // Setup confirm booking listener separately when the step becomes active
@@ -572,9 +575,96 @@ async function resendOTP() {
     await sendOTP(userData.email);
 }
 
+// Program Selection Functions
+function initializeProgramSelection() {
+    const programRadios = document.querySelectorAll('input[name="selectedProgram"]');
+    const proceedButton = document.getElementById('proceedToOnboarding');
+    
+    programRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            if (this.checked) {
+                selectedProgram = {
+                    id: this.value,
+                    name: getProgramName(this.value),
+                    price: getProgramPrice(this.value),
+                    originalPrice: getProgramOriginalPrice(this.value)
+                };
+                proceedButton.disabled = false;
+                
+                // Add visual feedback
+                document.querySelectorAll('.program-card').forEach(card => {
+                    card.classList.remove('selected');
+                });
+                this.closest('.program-card').classList.add('selected');
+            }
+        });
+    });
+}
+
+function getProgramName(programId) {
+    const programs = {
+        'diabetes-light': 'Diabetes Management – Light',
+        'diabetes-plus': 'Diabetes Management – Plus',
+        'weight-light': 'Weight Management – Light',
+        'weight-plus': 'Weight Management – Plus'
+    };
+    return programs[programId] || 'Unknown Program';
+}
+
+function getProgramPrice(programId) {
+    const prices = {
+        'diabetes-light': '₹999',
+        'diabetes-plus': '₹1,999',
+        'weight-light': '₹999',
+        'weight-plus': '₹1,999'
+    };
+    return prices[programId] || '₹0';
+}
+
+function getProgramOriginalPrice(programId) {
+    const prices = {
+        'diabetes-light': '₹2,997',
+        'diabetes-plus': '₹5,997',
+        'weight-light': '₹2,997',
+        'weight-plus': '₹5,997'
+    };
+    return prices[programId] || '₹0';
+}
+
+function handleProceedToOnboarding() {
+    if (!selectedProgram) {
+        alert('Please select a program first.');
+        return;
+    }
+    
+    // Hide program selection and show onboarding
+    document.getElementById('programSelection').classList.add('hidden');
+    document.getElementById('progressBar').classList.remove('hidden');
+    
+    // Show selected program summary
+    updateSelectedProgramSummary();
+    
+    goToStep(1);
+}
+
+function updateSelectedProgramSummary() {
+    const summaryElement = document.getElementById('selectedProgramSummary');
+    summaryElement.innerHTML = `
+        <h3>Selected Program: ${selectedProgram.name}</h3>
+        <p>3 months program - <span class="price">${selectedProgram.price}</span> (Regular: ${selectedProgram.originalPrice})</p>
+    `;
+}
+
+function goToPrograms() {
+    document.getElementById('step1').classList.add('hidden');
+    document.getElementById('progressBar').classList.add('hidden');
+    document.getElementById('programSelection').classList.remove('hidden');
+    currentStep = 'programs';
+}
+
 // Navigation
 function goToStep(step) {
-    // Hide all steps
+    // Hide all steps except program selection
     document.querySelectorAll('.form-container').forEach(container => {
         container.classList.add('hidden');
     });
@@ -622,6 +712,7 @@ function simulateAPICall(delay = 1500) {
     return new Promise(resolve => setTimeout(resolve, delay));
 }
 
-// Make goToStep available globally for onclick handlers
+// Make functions available globally for onclick handlers
 window.goToStep = goToStep;
+window.goToPrograms = goToPrograms;
 window.copyDeepLink = copyDeepLink;
