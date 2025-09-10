@@ -1021,9 +1021,13 @@ form .btn-primary:not(.button-group .btn-primary) {
 }
 
 /* Hide progress bar on program selection page */
-.program-selection .progress-bar,
 #programSelection:not(.hidden) ~ .progress-bar {
     display: none !important;
+}
+
+/* Ensure progress bar shows when program selection is hidden */
+#programSelection.hidden ~ .progress-bar {
+    display: flex !important;
 }
 
 .program-item {
@@ -1246,14 +1250,12 @@ form .btn-primary:not(.button-group .btn-primary) {
 
 .feature {
     display: flex;
-    align-items: flex-start;
+    align-items: baseline;
     gap: 6px;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     font-size: 13px;
-    line-height: 1.3;
+    line-height: 1.4;
     color: var(--color-darkest);
-    opacity: 1;
-    transform: none;
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
@@ -1263,12 +1265,9 @@ form .btn-primary:not(.button-group .btn-primary) {
     font-weight: 700;
     font-size: 12px;
     flex-shrink: 0;
-    width: 12px;
-    height: auto;
     display: inline-block;
-    margin: 0;
-    line-height: 1.3;
-    padding-top: 1px;
+    line-height: 1;
+    vertical-align: baseline;
 }
 
 .best-suited {
@@ -1578,19 +1577,17 @@ form .btn-primary:not(.button-group .btn-primary) {
     
     .feature {
         font-size: 12px;
-        margin-bottom: 6px;
+        margin-bottom: 7px;
         gap: 5px;
-        align-items: flex-start;
-        line-height: 1.3;
+        align-items: baseline;
+        line-height: 1.4;
     }
     
     .feature .checkmark {
         font-size: 11px;
-        width: 11px;
-        height: auto;
         display: inline-block;
-        line-height: 1.3;
-        padding-top: 1px;
+        line-height: 1;
+        vertical-align: baseline;
     }
     
     .program-selection {
@@ -1737,19 +1734,17 @@ form .btn-primary:not(.button-group .btn-primary) {
     
     .feature {
         font-size: 11px;
-        margin-bottom: 5px;
+        margin-bottom: 6px;
         gap: 4px;
-        align-items: flex-start;
-        line-height: 1.3;
+        align-items: baseline;
+        line-height: 1.4;
     }
     
     .feature .checkmark {
         font-size: 10px;
-        width: 10px;
-        height: auto;
         display: inline-block;
-        line-height: 1.3;
-        padding-top: 1px;
+        line-height: 1;
+        vertical-align: baseline;
     }
     
     .radio-label {

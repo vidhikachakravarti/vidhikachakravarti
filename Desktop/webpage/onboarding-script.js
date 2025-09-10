@@ -675,24 +675,31 @@ function getProgramOriginalPrice(programId) {
 }
 
 function handleProceedToOnboarding() {
+    console.log('handleProceedToOnboarding called');
+    console.log('selectedProgram:', selectedProgram);
+    
     if (!selectedProgram) {
         alert('Please select a program first.');
         return;
     }
     
+    console.log('Hiding program selection...');
     // Hide program selection first
     document.getElementById('programSelection').classList.add('hidden');
     
+    console.log('Showing progress bar...');
     // Show progress bar with proper display and remove hidden class
     const progressBar = document.getElementById('progressBar');
     if (progressBar) {
         progressBar.classList.remove('hidden');
         progressBar.style.display = 'flex';
+        console.log('Progress bar should now be visible');
     }
     
     // Show selected program summary
     updateSelectedProgramSummary();
     
+    console.log('Going to step 1...');
     // Go to step 1 (which will show the form)
     goToStep(1);
 }
@@ -724,13 +731,21 @@ function goToPrograms() {
 
 // Navigation
 function goToStep(step) {
+    console.log(`goToStep called with step: ${step}`);
+    
     // Hide all steps except program selection
     document.querySelectorAll('.form-container').forEach(container => {
         container.classList.add('hidden');
     });
     
     // Show target step
-    document.getElementById(`step${step}`).classList.remove('hidden');
+    const targetStep = document.getElementById(`step${step}`);
+    if (targetStep) {
+        targetStep.classList.remove('hidden');
+        console.log(`Step ${step} should now be visible`);
+    } else {
+        console.error(`Step ${step} element not found!`);
+    }
     
     // Update progress bar
     updateProgressBar(step);
