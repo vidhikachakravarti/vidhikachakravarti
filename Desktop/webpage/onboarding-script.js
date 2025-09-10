@@ -680,19 +680,20 @@ function handleProceedToOnboarding() {
         return;
     }
     
-    // Hide program selection and show onboarding
+    // Hide program selection first
     document.getElementById('programSelection').classList.add('hidden');
-    document.getElementById('progressBar').classList.remove('hidden');
+    
+    // Show progress bar with proper display and remove hidden class
+    const progressBar = document.getElementById('progressBar');
+    if (progressBar) {
+        progressBar.classList.remove('hidden');
+        progressBar.style.display = 'flex';
+    }
     
     // Show selected program summary
     updateSelectedProgramSummary();
     
-    // Show progress bar and go to step 1
-    const progressBar = document.getElementById('progressBar');
-    if (progressBar) {
-        progressBar.style.display = 'flex';
-    }
-    
+    // Go to step 1 (which will show the form)
     goToStep(1);
 }
 
