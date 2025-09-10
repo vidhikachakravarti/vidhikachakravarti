@@ -710,6 +710,26 @@ function updateSelectedProgramSummary() {
         <h3>Selected Program: ${selectedProgram.name}</h3>
         <p>3 months program - <span class="price">${selectedProgram.price}</span> (Regular: ${selectedProgram.originalPrice})</p>
     `;
+    
+    // Show/hide HbA1c field based on program type with smooth transition
+    const hba1cGroup = document.getElementById('hba1c-group');
+    const isDiabetesProgram = selectedProgram.id.includes('diabetes');
+    
+    if (isDiabetesProgram) {
+        hba1cGroup.style.display = 'block';
+        // Add class for smooth show animation
+        setTimeout(() => {
+            hba1cGroup.classList.add('show');
+        }, 10);
+    } else {
+        hba1cGroup.classList.remove('show');
+        // Hide after transition
+        setTimeout(() => {
+            hba1cGroup.style.display = 'none';
+        }, 300);
+        // Clear the value if hidden
+        document.getElementById('hba1c').value = '';
+    }
 }
 
 function goToPrograms() {
