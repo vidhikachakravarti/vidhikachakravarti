@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification - Transform Your Health Journey</title>
+    <link rel="stylesheet" href="onboarding-styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Logo Header -->
+        <div class="logo-header">
+            <img src="lillia_logo-01.png" alt="Lillia" class="logo">
+        </div>
+        
+        <!-- Progress Indicator -->
+        <div class="progress-bar" id="progressBar">
+            <div class="progress-step completed" data-step="1">
+                <span class="step-number">1</span>
+                <span class="step-label">Details</span>
+            </div>
+            <div class="progress-step active" data-step="2">
+                <span class="step-number">2</span>
+                <span class="step-label">Verify</span>
+            </div>
+            <div class="progress-step" data-step="3">
+                <span class="step-number">3</span>
+                <span class="step-label">Schedule</span>
+            </div>
+            <div class="progress-step" data-step="4">
+                <span class="step-number">4</span>
+                <span class="step-label">Complete</span>
+            </div>
+        </div>
+
+        <!-- Step 2: OTP Verification -->
+        <div class="form-container" id="step2">
+            <div class="form-header">
+                <h1>Verify Your Email</h1>
+                <p>We've sent a verification code to <span id="emailDisplay"></span></p>
+            </div>
+
+            <form id="otpForm">
+                <div class="otp-container">
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+                </div>
+                <span class="error-message" id="otpError"></span>
+
+                <div class="resend-container">
+                    <p>Didn't receive the code? <button type="button" id="resendOtp" class="link-btn">Resend OTP</button></p>
+                    <p class="timer" id="resendTimer"></p>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary" onclick="goBack()">Back</button>
+                    <button type="submit" class="btn btn-primary">Verify & Continue</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay hidden" id="loadingOverlay">
+            <div class="spinner"></div>
+            <p id="loadingText">Processing...</p>
+        </div>
+    </div>
+
+    <script src="step2-script.js"></script>
+</body>
+</html>

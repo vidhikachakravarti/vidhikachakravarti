@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Consultation - Transform Your Health Journey</title>
+    <link rel="stylesheet" href="onboarding-styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Logo Header -->
+        <div class="logo-header">
+            <img src="lillia_logo-01.png" alt="Lillia" class="logo">
+        </div>
+        
+        <!-- Progress Indicator -->
+        <div class="progress-bar" id="progressBar">
+            <div class="progress-step completed" data-step="1">
+                <span class="step-number">1</span>
+                <span class="step-label">Details</span>
+            </div>
+            <div class="progress-step completed" data-step="2">
+                <span class="step-number">2</span>
+                <span class="step-label">Verify</span>
+            </div>
+            <div class="progress-step active" data-step="3">
+                <span class="step-number">3</span>
+                <span class="step-label">Schedule</span>
+            </div>
+            <div class="progress-step" data-step="4">
+                <span class="step-number">4</span>
+                <span class="step-label">Complete</span>
+            </div>
+        </div>
+
+        <!-- Step 3: Schedule Consultation -->
+        <div class="form-container" id="step3">
+            <div class="form-header">
+                <h1>Schedule Your FREE Consultation</h1>
+                <p>Book your first session with our expert nutritionist</p>
+            </div>
+
+            <div class="nutritionist-info">
+                <div class="nutritionist-details">
+                    <h3 id="nutritionistName">Dr. Sarah Johnson</h3>
+                    <p>Certified Nutritionist & Diabetes Specialist</p>
+                </div>
+            </div>
+
+            <div id="calendarContainer">
+                <!-- Calendar will be loaded here -->
+            </div>
+
+            <div class="selected-slot hidden" id="selectedSlotContainer">
+                <h3>Selected Time Slot</h3>
+                <p id="selectedSlotDisplay"></p>
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="btn btn-secondary" onclick="goBack()">Back</button>
+                <button type="button" class="btn btn-primary" id="confirmBooking" disabled>Confirm Booking</button>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay hidden" id="loadingOverlay">
+            <div class="spinner"></div>
+            <p id="loadingText">Processing...</p>
+        </div>
+    </div>
+
+    <script src="step3-script.js"></script>
+</body>
+</html>

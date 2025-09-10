@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Congratulations! - Transform Your Health Journey</title>
+    <link rel="stylesheet" href="onboarding-styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Logo Header -->
+        <div class="logo-header">
+            <img src="lillia_logo-01.png" alt="Lillia" class="logo">
+        </div>
+        
+        <!-- Progress Indicator -->
+        <div class="progress-bar" id="progressBar">
+            <div class="progress-step completed" data-step="1">
+                <span class="step-number">1</span>
+                <span class="step-label">Details</span>
+            </div>
+            <div class="progress-step completed" data-step="2">
+                <span class="step-number">2</span>
+                <span class="step-label">Verify</span>
+            </div>
+            <div class="progress-step completed" data-step="3">
+                <span class="step-number">3</span>
+                <span class="step-label">Schedule</span>
+            </div>
+            <div class="progress-step active" data-step="4">
+                <span class="step-number">4</span>
+                <span class="step-label">Complete</span>
+            </div>
+        </div>
+
+        <!-- Step 4: Confirmation & App Download -->
+        <div class="form-container" id="step4">
+            <div class="success-container">
+                <div class="success-icon">✓</div>
+                <h1>Congratulations!</h1>
+                <p>Your profile has been created successfully</p>
+            </div>
+
+            <div class="confirmation-details">
+                <h3>Appointment Confirmed</h3>
+                <div class="appointment-card">
+                    <div class="appointment-info">
+                        <p><strong>Date & Time:</strong> <span id="appointmentDateTime"></span></p>
+                        <p><strong>Nutritionist:</strong> <span id="appointmentNutritionist"></span></p>
+                        <p><strong>Type:</strong> Free Consultation (30 minutes)</p>
+                    </div>
+                </div>
+                <p class="confirmation-note">Confirmation details have been sent to your email</p>
+            </div>
+
+            <div class="app-download-section">
+                <h3>Get Started with Our App</h3>
+                <p>Access your personalized health dashboard on the go</p>
+                
+                <div class="deep-link-container">
+                    <p class="deep-link-label">Your Personal Login Link:</p>
+                    <div class="deep-link-display">
+                        <code id="deepLinkUrl"></code>
+                        <button class="copy-btn" onclick="copyDeepLink()">Copy</button>
+                    </div>
+                </div>
+
+                <button class="btn btn-download" id="downloadAppBtn">
+                    <span class="download-icon">📱</span>
+                    Download App
+                </button>
+
+                <div class="app-features">
+                    <div class="feature">
+                        <span class="feature-icon">📊</span>
+                        <span>Track Progress</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🍎</span>
+                        <span>Meal Plans</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">💬</span>
+                        <span>Chat Support</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay hidden" id="loadingOverlay">
+            <div class="spinner"></div>
+            <p id="loadingText">Processing...</p>
+        </div>
+    </div>
+
+    <script src="step4-script.js"></script>
+</body>
+</html>

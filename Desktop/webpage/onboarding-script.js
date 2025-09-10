@@ -683,25 +683,11 @@ function handleProceedToOnboarding() {
         return;
     }
     
-    console.log('Hiding program selection...');
-    // Hide program selection first
-    document.getElementById('programSelection').classList.add('hidden');
+    // Store selected program data in sessionStorage for next page
+    sessionStorage.setItem('selectedProgram', JSON.stringify(selectedProgram));
     
-    console.log('Showing progress bar...');
-    // Show progress bar with proper display and remove hidden class
-    const progressBar = document.getElementById('progressBar');
-    if (progressBar) {
-        progressBar.classList.remove('hidden');
-        progressBar.style.display = 'flex';
-        console.log('Progress bar should now be visible');
-    }
-    
-    // Show selected program summary
-    updateSelectedProgramSummary();
-    
-    console.log('Going to step 1...');
-    // Go to step 1 (which will show the form)
-    goToStep(1);
+    // Redirect to step 1
+    window.location.href = 'step1-details.html';
 }
 
 function updateSelectedProgramSummary() {
