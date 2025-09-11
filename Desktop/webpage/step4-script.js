@@ -1,121 +1,154 @@
-// Step 4: Confirmation Script
+// State management
 let userData = {};
-let confirmationData = {};
 
-// Initialize page
+// Initialize
 document.addEventListener('DOMContentLoaded', () => {
-    loadConfirmationData();
+    loadUserData();
+    displayConfirmationDetails();
     setupEventListeners();
-    updateConfirmationDetails();
 });
 
-// Load confirmation data from sessionStorage
-function loadConfirmationData() {
-    const storedUserData = sessionStorage.getItem('userData');
-    const storedConfirmationData = sessionStorage.getItem('confirmationData');
-    
-    if (storedUserData && storedConfirmationData) {
-        userData = JSON.parse(storedUserData);
-        confirmationData = JSON.parse(storedConfirmationData);
+// Navigation functions
+function goToLanding() {
+    window.location.href = 'onboarding.html';
+}
+
+// Load user data from previous steps
+function loadUserData() {
+    const storedData = sessionStorage.getItem('userData');
+    if (storedData) {
+        userData = JSON.parse(storedData);
+        console.log('Final user data:', userData);
     } else {
-        // If no data, redirect back to step 1
+        // If no user data, redirect back to step 1
+        alert('Please complete the onboarding process first.');
         window.location.href = 'step1-details.html';
     }
 }
 
-// Event Listeners
+// Display confirmation details
+function displayConfirmationDetails() {
+    // Display appointment details
+    if (userData.appointment) {
+        document.getElementById('appointmentDateTime').textContent = userData.appointment.formatted;
+        document.getElementById('appointmentNutritionist').textContent = userData.appointment.nutritionist;
+    }
+    
+    // Generate and display deep link
+    generateDeepLink();
+}
+
+// Setup event listeners
 function setupEventListeners() {
     document.getElementById('downloadAppBtn').addEventListener('click', handleAppDownload);
 }
 
-// Update Confirmation Details
-function updateConfirmationDetails() {
-    const appointment = confirmationData.appointment;
-    const deepLink = confirmationData.deepLink;
+// Generate deep link (prototype)
+function generateDeepLink() {
+    // Generate a mock deep link based on user data
+    const userId = generateUserId();
+    const deepLink = `lillia://app/dashboard?userId=${userId}&token=${generateToken()}`;
     
-    const date = new Date(appointment.dateTime);
-    const options = { 
-        weekday: 'long', 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-    };
-    
-    document.getElementById('appointmentDateTime').textContent = 
-        date.toLocaleDateString('en-US', options);
-    document.getElementById('appointmentNutritionist').textContent = 
-        appointment.nutritionist;
     document.getElementById('deepLinkUrl').textContent = deepLink;
+    
+    // Store deep link for copying
+    window.currentDeepLink = deepLink;
 }
 
-// Handle App Download
-function handleAppDownload() {
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    const deepLink = confirmationData.deepLink;
-    
-    // Detect platform
-    const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
-    const isAndroid = /android/i.test(userAgent);
-    
-    // App store URLs (Prototype)
-    const appStoreUrl = 'https://apps.apple.com/app/example-health-app';
-    const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.example.health';
-    
-    if (isIOS) {
-        // Try deep link first, then fall back to App Store
-        window.location.href = deepLink;
-        setTimeout(() => {
-            window.location.href = appStoreUrl;
-        }, 2500);
-    } else if (isAndroid) {
-        // Try deep link first, then fall back to Play Store
-        window.location.href = deepLink;
-        setTimeout(() => {
-            window.location.href = playStoreUrl;
-        }, 2500);
-    } else {
-        // Desktop: Show QR code or options
-        alert('Please download our app on your mobile device using the deep link provided.');
-    }
+function generateUserId() {
+    // Generate a simple user ID based on email and current time
+    const email = userData.email || 'user@example.com';
+    const timestamp = Date.now();
+    return btoa(email + timestamp).slice(0, 12);
 }
 
-// Copy Deep Link
+function generateToken() {
+    // Generate a mock authentication token
+    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+}
+
+// Copy deep link to clipboard
 function copyDeepLink() {
     const deepLinkText = document.getElementById('deepLinkUrl').textContent;
     
-    if (navigator.clipboard) {
-        navigator.clipboard.writeText(deepLinkText).then(() => {
-            const button = event.target;
-            const originalText = button.textContent;
-            button.textContent = 'Copied!';
-            button.style.background = 'var(--color-success)';
-            
-            setTimeout(() => {
-                button.textContent = originalText;
-                button.style.background = '';
-            }, 2000);
-        });
+    navigator.clipboard.writeText(deepLinkText).then(() => {
+        // Show feedback
+        const copyBtn = document.querySelector('.copy-btn');
+        const originalText = copyBtn.textContent;
+        copyBtn.textContent = 'Copied!';
+        copyBtn.style.background = '#4CAF50';
+        
+        setTimeout(() => {
+            copyBtn.textContent = originalText;
+            copyBtn.style.background = '';
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy to clipboard:', err);
+        
+        // Fallback: select the text
+        const deepLinkElement = document.getElementById('deepLinkUrl');
+        const range = document.createRange();
+        range.selectNode(deepLinkElement);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        
+        alert('Deep link selected. Press Ctrl+C to copy.');
+    });
+}
+
+// Handle app download
+function handleAppDownload() {
+    // Detect platform and provide appropriate download link
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    
+    let downloadUrl;
+    if (/android/i.test(userAgent)) {
+        downloadUrl = 'https://play.google.com/store/apps/details?id=com.lillia.health';
+    } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        downloadUrl = 'https://apps.apple.com/app/lillia-health/id123456789';
     } else {
-        // Fallback for older browsers
-        const textArea = document.createElement('textarea');
-        textArea.value = deepLinkText;
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textArea);
-        alert('Link copied to clipboard!');
+        // Default to play store for web users
+        downloadUrl = 'https://play.google.com/store/apps/details?id=com.lillia.health';
     }
+    
+    // Open download link
+    window.open(downloadUrl, '_blank');
+    
+    // Log analytics event
+    console.log('App download initiated', {
+        platform: /android/i.test(userAgent) ? 'Android' : 'iOS',
+        userId: userData.email,
+        timestamp: new Date().toISOString()
+    });
 }
 
-// Clear session data (optional - for completion)
-function clearSessionData() {
-    sessionStorage.removeItem('selectedProgram');
-    sessionStorage.removeItem('userData');
-    sessionStorage.removeItem('verificationEmail');
-    sessionStorage.removeItem('confirmationData');
+// Analytics and completion tracking
+function trackOnboardingCompletion() {
+    const completionData = {
+        userId: userData.email,
+        completedAt: new Date().toISOString(),
+        userDetails: {
+            fullName: userData.fullName,
+            email: userData.email,
+            phone: userData.mobileNumber,
+            bmi: userData.bmi,
+            hasHba1c: !!userData.hba1c
+        },
+        appointment: userData.appointment,
+        source: 'web_onboarding'
+    };
+    
+    console.log('Onboarding completed:', completionData);
+    
+    // In a real app, this would send data to analytics service
+    // analytics.track('onboarding_completed', completionData);
 }
 
-// Make function available globally for onclick handler
+// Auto-trigger completion tracking when page loads
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(trackOnboardingCompletion, 1000);
+});
+
+// Make functions available globally
+window.goToLanding = goToLanding;
 window.copyDeepLink = copyDeepLink;

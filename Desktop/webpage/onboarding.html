@@ -7,18 +7,36 @@
     <link rel="stylesheet" href="onboarding-styles.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Logo Header -->
-        <div class="logo-header">
+    <!-- Fixed Header with Logo and CTA Button -->
+    <div class="fixed-header">
+        <div class="header-container">
             <img src="lillia_logo-01.png" alt="Lillia" class="logo">
+            <button class="btn btn-primary btn-header" onclick="goToStep1()">Book Free Consult</button>
         </div>
-        
+    </div>
 
+    <div class="container">
         <!-- Program Selection Page -->
         <div class="program-selection" id="programSelection">
             <div class="hero-section">
-                <h1 class="hero-title">Transform Your Health with Expert-Guided Programs</h1>
-                <p class="hero-subtitle">Choose from our scientifically-backed programs designed to deliver real results. Start with a FREE consultation to discuss your goals.</p>
+                <h1 class="hero-title">Improve your health with our easy-to-follow programs</h1>
+                <p class="hero-subtitle">Choose from our top selling programs designed to see real results.</p>
+            </div>
+
+            <!-- Free Consultation Card -->
+            <div class="consultation-cta-top">
+                <div class="consultation-highlight">
+                    <div class="consultation-icon">💬</div>
+                    <div class="consultation-text">
+                        <div class="consultation-header">
+                            <h3>Start with a FREE Consultation</h3>
+                            <button class="btn btn-primary btn-bubble" onclick="goToStep1()">
+                                Book Now
+                            </button>
+                        </div>
+                        <p>Discuss your health goals and get personalized recommendations from our expert nutritionist before committing to any program.</p>
+                    </div>
+                </div>
             </div>
 
             <div class="programs-list">
@@ -59,14 +77,6 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="program-selection">
-                        <input type="radio" name="selectedProgram" id="diabetes-light" value="diabetes-light">
-                        <label for="diabetes-light" class="radio-label">
-                            <span class="radio-custom"></span>
-                            <span class="select-text">Select this program</span>
-                        </label>
-                    </div>
                 </div>
 
                 <!-- Diabetes Management Plus -->
@@ -105,14 +115,6 @@
                                 <strong>Best suited for:</strong> HbA1c > 6.5% or living with diabetes for 1–5 years
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="program-selection">
-                        <input type="radio" name="selectedProgram" id="diabetes-plus" value="diabetes-plus">
-                        <label for="diabetes-plus" class="radio-label">
-                            <span class="radio-custom"></span>
-                            <span class="select-text">Select this program</span>
-                        </label>
                     </div>
                 </div>
 
@@ -153,14 +155,6 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="program-selection">
-                        <input type="radio" name="selectedProgram" id="weight-light" value="weight-light">
-                        <label for="weight-light" class="radio-label">
-                            <span class="radio-custom"></span>
-                            <span class="select-text">Select this program</span>
-                        </label>
-                    </div>
                 </div>
 
                 <!-- Weight Management Plus -->
@@ -200,14 +194,6 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="program-selection">
-                        <input type="radio" name="selectedProgram" id="weight-plus" value="weight-plus">
-                        <label for="weight-plus" class="radio-label">
-                            <span class="radio-custom"></span>
-                            <span class="select-text">Select this program</span>
-                        </label>
-                    </div>
                 </div>
             </div>
 
@@ -216,16 +202,9 @@
                 <p><strong>All programs include:</strong> Full access to the Lillia app for easy scheduling, progress tracking, and 24/7 support</p>
             </div>
 
-            <div class="consultation-cta">
-                <div class="consultation-highlight">
-                    <div class="consultation-icon">💬</div>
-                    <div class="consultation-text">
-                        <h3>Start with a FREE Consultation</h3>
-                        <p>Discuss your health goals and get personalized recommendations from our expert nutritionist before committing to any program.</p>
-                    </div>
-                </div>
-                <button class="btn btn-primary btn-large" id="proceedToOnboarding" disabled>
-                    Book FREE Consultation & Continue
+            <div class="consultation-cta-bottom">
+                <button class="btn btn-primary btn-large" onclick="goToStep1()">
+                    Book FREE Consultation
                 </button>
             </div>
         </div>

@@ -138,7 +138,6 @@ function setupEventListeners() {
     document.getElementById('otpForm').addEventListener('submit', handleOTPSubmit);
     document.getElementById('resendOtp').addEventListener('click', resendOTP);
     document.getElementById('downloadAppBtn').addEventListener('click', handleAppDownload);
-    document.getElementById('proceedToOnboarding').addEventListener('click', handleProceedToOnboarding);
 }
 
 // Setup confirm booking listener separately when the step becomes active
@@ -577,8 +576,6 @@ async function resendOTP() {
 
 // Program Selection Functions
 function initializeProgramSelection() {
-    const programRadios = document.querySelectorAll('input[name="selectedProgram"]');
-    const proceedButton = document.getElementById('proceedToOnboarding');
     const expandButtons = document.querySelectorAll('.expand-btn');
     
     // Initialize expand/collapse functionality
@@ -608,27 +605,6 @@ function initializeProgramSelection() {
             } else {
                 programDetails.classList.add('expanded');
                 this.classList.add('expanded');
-            }
-        });
-    });
-    
-    // Program selection functionality
-    programRadios.forEach(radio => {
-        radio.addEventListener('change', function() {
-            if (this.checked) {
-                selectedProgram = {
-                    id: this.value,
-                    name: getProgramName(this.value),
-                    price: getProgramPrice(this.value),
-                    originalPrice: getProgramOriginalPrice(this.value)
-                };
-                proceedButton.disabled = false;
-                
-                // Add visual feedback to program items
-                document.querySelectorAll('.program-item').forEach(item => {
-                    item.classList.remove('selected');
-                });
-                this.closest('.program-item').classList.add('selected');
             }
         });
     });
@@ -674,21 +650,6 @@ function getProgramOriginalPrice(programId) {
     return prices[programId] || '₹0';
 }
 
-function handleProceedToOnboarding() {
-    console.log('handleProceedToOnboarding called');
-    console.log('selectedProgram:', selectedProgram);
-    
-    if (!selectedProgram) {
-        alert('Please select a program first.');
-        return;
-    }
-    
-    // Store selected program data in sessionStorage for next page
-    sessionStorage.setItem('selectedProgram', JSON.stringify(selectedProgram));
-    
-    // Redirect to step 1
-    window.location.href = 'step1-details.html';
-}
 
 function updateSelectedProgramSummary() {
     const summaryElement = document.getElementById('selectedProgramSummary');
@@ -745,8 +706,34 @@ function simulateAPICall(delay = 1500) {
     return new Promise(resolve => setTimeout(resolve, delay));
 }
 
+// Navigation functions to redirect to step pages
+function goToStep1() {
+    window.location.href = 'step1-details.html';
+}
+
+function goToStep2() {
+    window.location.href = 'step2-verification.html';
+}
+
+function goToStep3() {
+    window.location.href = 'step3-schedule.html';
+}
+
+function goToStep4() {
+    window.location.href = 'step4-confirmation.html';
+}
+
+function goToLanding() {
+    window.location.href = 'onboarding.html';
+}
+
 // Make functions available globally for onclick handlers
 window.goToPrograms = goToPrograms;
+window.goToStep1 = goToStep1;
+window.goToStep2 = goToStep2;
+window.goToStep3 = goToStep3;
+window.goToStep4 = goToStep4;
+window.goToLanding = goToLanding;
 window.copyDeepLink = copyDeepLink;
 
 // Add smooth scrolling to program selection

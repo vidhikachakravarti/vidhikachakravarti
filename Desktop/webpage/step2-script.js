@@ -1,27 +1,41 @@
-// Step 2: OTP Verification Script
-let otpTimer = null;
+// State management
 let userData = {};
+let otpTimer = null;
 
-// Initialize page
+// Initialize
 document.addEventListener('DOMContentLoaded', () => {
-    loadUserData();
     initializeOTPInputs();
+    loadUserData();
     setupEventListeners();
     startOTPTimer();
 });
 
-// Load user data from sessionStorage
+// Navigation functions
+function goToStep1() {
+    window.location.href = 'step1-details.html';
+}
+
+function goToStep3() {
+    window.location.href = 'step3-schedule.html';
+}
+
+// Load user data from previous step
 function loadUserData() {
-    const storedUserData = sessionStorage.getItem('userData');
-    const verificationEmail = sessionStorage.getItem('verificationEmail');
-    
-    if (storedUserData && verificationEmail) {
-        userData = JSON.parse(storedUserData);
-        document.getElementById('emailDisplay').textContent = verificationEmail;
+    const storedData = sessionStorage.getItem('userData');
+    if (storedData) {
+        userData = JSON.parse(storedData);
+        document.getElementById('emailDisplay').textContent = userData.email || 'your email';
     } else {
-        // If no data, redirect back to step 1
-        window.location.href = 'step1-details.html';
+        // If no user data, redirect back to step 1
+        alert('Please complete the previous step first.');
+        goToStep1();
     }
+}
+
+// Setup event listeners
+function setupEventListeners() {
+    document.getElementById('otpForm').addEventListener('submit', handleOTPSubmit);
+    document.getElementById('resendOtp').addEventListener('click', resendOTP);
 }
 
 // OTP Input Management
@@ -29,46 +43,66 @@ function initializeOTPInputs() {
     const otpInputs = document.querySelectorAll('.otp-input');
     
     otpInputs.forEach((input, index) => {
-        input.addEventListener('input', (e) => {
-            if (e.target.value.length === 1) {
-                if (index < otpInputs.length - 1) {
-                    otpInputs[index + 1].focus();
-                }
+        input.addEventListener('input', function(e) {
+            // Only allow numbers
+            this.value = this.value.replace(/[^0-9]/g, '');
+            
+            // Auto move to next input
+            if (this.value.length === 1 && index < otpInputs.length - 1) {
+                otpInputs[index + 1].focus();
             }
+            
+            // Clear error message when user starts typing
+            document.getElementById('otpError').textContent = '';
         });
         
-        input.addEventListener('keydown', (e) => {
-            if (e.key === 'Backspace' && !e.target.value && index > 0) {
+        input.addEventListener('keydown', function(e) {
+            // Handle backspace to go to previous input
+            if (e.key === 'Backspace' && this.value === '' && index > 0) {
                 otpInputs[index - 1].focus();
             }
         });
         
-        input.addEventListener('paste', (e) => {
+        input.addEventListener('paste', function(e) {
             e.preventDefault();
-            const pastedData = e.clipboardData.getData('text').slice(0, 6);
-            const digits = pastedData.split('');
+            const paste = (e.clipboardData || window.clipboardData).getData('text');
+            const pasteData = paste.replace(/[^0-9]/g, '').slice(0, 6);
             
-            digits.forEach((digit, i) => {
-                if (i < otpInputs.length && /^\d$/.test(digit)) {
-                    otpInputs[i].value = digit;
-                }
-            });
-            
-            const lastFilledIndex = Math.min(digits.length, otpInputs.length) - 1;
-            if (lastFilledIndex >= 0) {
-                otpInputs[lastFilledIndex].focus();
+            // Fill inputs with pasted data
+            for (let i = 0; i < pasteData.length && i < otpInputs.length; i++) {
+                otpInputs[i].value = pasteData[i];
             }
+            
+            // Focus on next empty input or last input
+            const nextEmptyIndex = pasteData.length < otpInputs.length ? pasteData.length : otpInputs.length - 1;
+            otpInputs[nextEmptyIndex].focus();
         });
     });
 }
 
-// Event Listeners
-function setupEventListeners() {
-    document.getElementById('otpForm').addEventListener('submit', handleOTPSubmit);
-    document.getElementById('resendOtp').addEventListener('click', resendOTP);
+// OTP Timer
+function startOTPTimer() {
+    let timeLeft = 60;
+    const timerElement = document.getElementById('resendTimer');
+    const resendButton = document.getElementById('resendOtp');
+    
+    resendButton.disabled = true;
+    resendButton.style.opacity = '0.5';
+    
+    otpTimer = setInterval(() => {
+        timerElement.textContent = `Resend code in ${timeLeft}s`;
+        timeLeft--;
+        
+        if (timeLeft < 0) {
+            clearInterval(otpTimer);
+            timerElement.textContent = '';
+            resendButton.disabled = false;
+            resendButton.style.opacity = '1';
+        }
+    }, 1000);
 }
 
-// Handle OTP Verification
+// Handle OTP form submission
 async function handleOTPSubmit(e) {
     e.preventDefault();
     
@@ -80,21 +114,23 @@ async function handleOTPSubmit(e) {
         return;
     }
     
-    await verifyOTP(otp);
-}
-
-// Verify OTP
-async function verifyOTP(otp) {
     showLoading('Verifying code...');
     
     try {
-        // Simulate API call - Replace with actual API call
+        // Simulate API call
         await simulateAPICall();
         
-        // Create user profile
-        await createUserProfile();
+        // For demo purposes, accept any 6-digit code
+        console.log('OTP verified:', otp);
         
-        // Redirect to scheduling step
+        // Update user data
+        userData.emailVerified = true;
+        userData.otp = otp;
+        
+        // Store updated data
+        sessionStorage.setItem('userData', JSON.stringify(userData));
+        
+        // Redirect to step 3
         window.location.href = 'step3-schedule.html';
         
     } catch (error) {
@@ -105,79 +141,41 @@ async function verifyOTP(otp) {
     }
 }
 
-// Create User Profile
-async function createUserProfile() {
-    showLoading('Creating your profile...');
-    
-    try {
-        // Simulate API call - Replace with actual API call
-        await simulateAPICall();
-        
-        // Add profile ID to user data
-        userData.profileId = 'USER_' + Date.now(); // Simulated user ID
-        
-        // Update stored user data
-        sessionStorage.setItem('userData', JSON.stringify(userData));
-        
-    } catch (error) {
-        console.error('Error creating profile:', error);
-        throw error;
-    }
-}
-
-// OTP Timer
-function startOTPTimer() {
-    let seconds = 60;
-    const timerElement = document.getElementById('resendTimer');
-    const resendButton = document.getElementById('resendOtp');
-    
-    resendButton.disabled = true;
-    
-    otpTimer = setInterval(() => {
-        seconds--;
-        timerElement.textContent = `Resend available in ${seconds}s`;
-        
-        if (seconds <= 0) {
-            clearInterval(otpTimer);
-            timerElement.textContent = '';
-            resendButton.disabled = false;
-        }
-    }, 1000);
-}
-
 // Resend OTP
 async function resendOTP() {
-    const otpInputs = document.querySelectorAll('.otp-input');
-    otpInputs.forEach(input => input.value = '');
-    otpInputs[0].focus();
-    
-    const verificationEmail = sessionStorage.getItem('verificationEmail');
-    await sendOTP(verificationEmail);
-    startOTPTimer();
-}
-
-// Send OTP
-async function sendOTP(email) {
-    showLoading('Sending verification code...');
+    showLoading('Resending code...');
     
     try {
-        // Simulate API call - Replace with actual API call
-        await simulateAPICall();
+        // Simulate API call
+        await simulateAPICall(1000);
+        
+        console.log('OTP resent to:', userData.email);
+        
+        // Clear OTP inputs
+        document.querySelectorAll('.otp-input').forEach(input => {
+            input.value = '';
+        });
+        
+        // Focus first input
+        document.querySelector('.otp-input').focus();
+        
+        // Restart timer
+        if (otpTimer) {
+            clearInterval(otpTimer);
+        }
+        startOTPTimer();
+        
+        alert('Verification code resent successfully!');
         
     } catch (error) {
-        console.error('Error sending OTP:', error);
-        alert('Failed to send verification code. Please try again.');
+        console.error('Error resending OTP:', error);
+        alert('Failed to resend code. Please try again.');
     } finally {
         hideLoading();
     }
 }
 
-// Go back to previous step
-function goBack() {
-    window.location.href = 'step1-details.html';
-}
-
-// Loading State
+// Loading functions
 function showLoading(text = 'Processing...') {
     document.getElementById('loadingText').textContent = text;
     document.getElementById('loadingOverlay').classList.remove('hidden');
@@ -187,7 +185,11 @@ function hideLoading() {
     document.getElementById('loadingOverlay').classList.add('hidden');
 }
 
-// Utility: Simulate API Call
+// Utility functions
 function simulateAPICall(delay = 1500) {
     return new Promise(resolve => setTimeout(resolve, delay));
 }
+
+// Make functions available globally
+window.goToStep1 = goToStep1;
+window.goToStep3 = goToStep3;
