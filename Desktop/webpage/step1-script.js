@@ -226,6 +226,17 @@ function simulateAPICall(delay = 1500) {
     return new Promise(resolve => setTimeout(resolve, delay));
 }
 
+// Navigation function for going back to programs page
+function goBack() {
+    window.location.href = 'onboarding.html';
+}
+
+function goToPrograms() {
+    window.location.href = 'onboarding.html';
+}
+
 // Make functions available globally
 window.goToLanding = goToLanding;
 window.goToStep2 = goToStep2;
+window.goBack = goBack;
+window.goToPrograms = goToPrograms;
