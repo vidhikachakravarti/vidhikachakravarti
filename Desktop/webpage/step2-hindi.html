@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>अपना ईमेल सत्यापित करें - स्वास्थ्य यात्रा</title>
+    <link rel="stylesheet" href="onboarding-hindi-styles.css">
+</head>
+<body>
+    <!-- Fixed Header with Logo -->
+    <div class="fixed-header">
+        <div class="header-container">
+            <img src="lillia-logo-hindi.png" alt="Lillia" class="logo">
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress-step completed">
+                <div class="step-number">1</div>
+                <span class="step-label">विवरण</span>
+            </div>
+            <div class="progress-step active">
+                <div class="step-number">2</div>
+                <span class="step-label">सत्यापन</span>
+            </div>
+            <div class="progress-step">
+                <div class="step-number">3</div>
+                <span class="step-label">कार्यक्रम</span>
+            </div>
+            <div class="progress-step">
+                <div class="step-number">4</div>
+                <span class="step-label">पूर्ण</span>
+            </div>
+        </div>
+
+        <!-- Step 2: OTP Verification -->
+        <div class="form-container" id="step2">
+            <div class="form-header">
+                <h1>अपना ईमेल सत्यापित करें</h1>
+                <p>हमने <span id="emailDisplay"></span> पर एक सत्यापन कोड भेजा है</p>
+            </div>
+
+            <form id="otpForm">
+                <div class="otp-container">
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+                </div>
+                <span class="error-message" id="otpError"></span>
+
+                <div class="resend-container">
+                    <p>कोड नहीं मिला? <button type="button" id="resendOtp" class="link-btn">OTP दोबारा भेजें</button></p>
+                    <p class="timer" id="resendTimer"></p>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary" onclick="goToStep1()">वापस</button>
+                    <button type="submit" class="btn btn-primary">सत्यापित करें और जारी रखें</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay hidden" id="loadingOverlay">
+            <div class="spinner"></div>
+            <p id="loadingText">सत्यापन चल रहा है...</p>
+        </div>
+    </div>
+
+    <script src="step2-hindi-script.js"></script>
+</body>
+</html>

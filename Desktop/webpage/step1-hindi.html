@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>हमें अपने बारे में बताएं - स्वास्थ्य यात्रा</title>
+    <link rel="stylesheet" href="onboarding-hindi-styles.css">
+</head>
+<body>
+    <!-- Fixed Header with Logo and CTA Button -->
+    <div class="fixed-header">
+        <div class="header-container">
+            <img src="lillia-logo-hindi.png" alt="Lillia" class="logo">
+            <button class="btn btn-primary btn-header" onclick="goToLanding()">← कार्यक्रमों पर वापस</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress-step active">
+                <div class="step-number">1</div>
+                <span class="step-label">विवरण</span>
+            </div>
+            <div class="progress-step">
+                <div class="step-number">2</div>
+                <span class="step-label">सत्यापन</span>
+            </div>
+            <div class="progress-step">
+                <div class="step-number">3</div>
+                <span class="step-label">कार्यक्रम</span>
+            </div>
+            <div class="progress-step">
+                <div class="step-number">4</div>
+                <span class="step-label">पूर्ण</span>
+            </div>
+        </div>
+
+        <!-- Step 1: User Details Form -->
+        <div class="form-container" id="step1">
+            <div class="form-header">
+                <h1>हमें अपने बारे में बताएं</h1>
+                <p>आपके अनुभव को व्यक्तिगत बनाने के लिए आइए कुछ मूलभूत जानकारी एकत्र करते हैं</p>
+            </div>
+
+            <form id="userDetailsForm">
+                <div class="form-group">
+                    <label for="fullName">पूरा नाम *</label>
+                    <input type="text" id="fullName" name="fullName" required placeholder="अपना पूरा नाम दर्ज करें">
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="mobileNumber">मोबाइल नंबर *</label>
+                        <input type="tel" id="mobileNumber" name="mobileNumber" required placeholder="+91 XXXXX XXXXX" pattern="[0-9+\s-]{10,}">
+                        <span class="error-message"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">ईमेल पता *</label>
+                        <input type="email" id="email" name="email" required placeholder="आपका@ईमेल.com">
+                        <span class="error-message"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="programInterest">रुचि का कार्यक्रम *</label>
+                    <select id="programInterest" name="programInterest" required>
+                        <option value="">एक कार्यक्रम चुनें</option>
+                        <option value="diabetes">मधुमेह प्रबंधन</option>
+                        <option value="weight">वजन प्रबंधन</option>
+                    </select>
+                    <span class="error-message"></span>
+                </div>
+
+                <!-- Conditional Fields Container -->
+                <div id="conditionalFields" class="conditional-fields hidden">
+                    <!-- HbA1c field - only for Diabetes Management -->
+                    <div class="form-group" id="hba1c-group">
+                        <label for="hba1c">हाल का HbA1c (%)</label>
+                        <input type="number" id="hba1c" name="hba1c" step="0.1" min="0" max="15" placeholder="जैसे, 6.5">
+                        <span class="error-message"></span>
+                        <span class="helper-text">वैकल्पिक: आपकी सबसे हाल की HbA1c रीडिंग</span>
+                    </div>
+
+                    <!-- Height and Weight fields - for both programs -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="height">कद (सेंटीमीटर) *</label>
+                            <input type="number" id="height" name="height" min="50" max="250" placeholder="जैसे, 170">
+                            <span class="error-message"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="weight">वजन (किलो) *</label>
+                            <input type="number" id="weight" name="weight" step="0.1" min="20" max="300" placeholder="जैसे, 70">
+                            <span class="error-message"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary" onclick="goToLanding()">कार्यक्रमों पर वापस</button>
+                    <button type="submit" class="btn btn-primary">जमा करें</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay hidden" id="loadingOverlay">
+            <div class="spinner"></div>
+            <p id="loadingText">प्रक्रिया चल रही है...</p>
+        </div>
+    </div>
+
+    <script src="step1-hindi-script.js"></script>
+</body>
+</html>

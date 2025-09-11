@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>बधाई हो! - स्वास्थ्य यात्रा</title>
+    <link rel="stylesheet" href="onboarding-hindi-styles.css">
+</head>
+<body>
+    <!-- Fixed Header with Logo -->
+    <div class="fixed-header">
+        <div class="header-container">
+            <img src="lillia-logo-hindi.png" alt="Lillia" class="logo">
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress-step completed">
+                <div class="step-number">1</div>
+                <span class="step-label">विवरण</span>
+            </div>
+            <div class="progress-step completed">
+                <div class="step-number">2</div>
+                <span class="step-label">सत्यापन</span>
+            </div>
+            <div class="progress-step completed">
+                <div class="step-number">3</div>
+                <span class="step-label">कार्यक्रम</span>
+            </div>
+            <div class="progress-step active">
+                <div class="step-number">4</div>
+                <span class="step-label">पूर्ण</span>
+            </div>
+        </div>
+
+        <!-- Step 4: Confirmation & App Download -->
+        <div class="form-container" id="step4">
+            <div class="success-container">
+                <div class="success-icon">✓</div>
+                <h1>बधाई हो!</h1>
+                <p>आपका प्रोफाइल सफलतापूर्वक बनाया गया है</p>
+            </div>
+
+            <div class="confirmation-details">
+                <h3>अपॉइंटमेंट की पुष्टि</h3>
+                <div class="appointment-card">
+                    <div class="appointment-info">
+                        <p><strong>तारीख और समय:</strong> <span id="appointmentDateTime"></span></p>
+                        <p><strong>पोषणविद्:</strong> <span id="appointmentNutritionist"></span></p>
+                        <p><strong>प्रकार:</strong> मुफ्त परामर्श (15 मिनट)</p>
+                    </div>
+                </div>
+                <p class="confirmation-note">पुष्टिकरण विवरण आपके ईमेल पर भेज दिए गए हैं</p>
+            </div>
+
+            <div class="app-download-section">
+                <h3>हमारे ऐप के साथ शुरूआत करें</h3>
+                <p>चलते-फिरते अपने व्यक्तिगत स्वास्थ्य डैशबोर्ड तक पहुंचें</p>
+                
+                <div class="deep-link-container">
+                    <p class="deep-link-label">आपका व्यक्तिगत लॉगिन लिंक:</p>
+                    <div class="deep-link-display">
+                        <code id="deepLinkUrl"></code>
+                        <button class="copy-btn" onclick="copyDeepLink()">कॉपी करें</button>
+                    </div>
+                </div>
+
+                <button class="btn btn-download" id="downloadAppBtn">
+                    <span class="download-icon">📱</span>
+                    ऐप डाउनलोड करें
+                </button>
+
+                <div class="app-features">
+                    <div class="feature">
+                        <span class="feature-icon">📊</span>
+                        <span>प्रगति ट्रैक करें</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🍎</span>
+                        <span>भोजन योजना</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">💬</span>
+                        <span>चैट सपोर्ट</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="step4-hindi-script.js"></script>
+</body>
+</html>

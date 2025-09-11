@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>अपनी स्वास्थ्य यात्रा को बदलें - अपना कार्यक्रम चुनें</title>
+    <link rel="stylesheet" href="onboarding-hindi-styles.css">
+</head>
+<body>
+    <!-- Fixed Header with Logo and CTA Button -->
+    <div class="fixed-header">
+        <div class="header-container">
+            <img src="lillia-logo-hindi.png" alt="Lillia" class="logo">
+            <button class="btn btn-primary btn-header" onclick="goToStep1()">मुफ्त परामर्श बुक करें</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Program Selection Page -->
+        <div class="program-selection" id="programSelection">
+            <div class="hero-section">
+                <h1 class="hero-title">हमारे आसान कार्यक्रमों से अपने स्वास्थ्य में सुधार करें</h1>
+                <p class="hero-subtitle">वास्तविक परिणाम देखने के लिए डिज़ाइन किए गए हमारे सबसे लोकप्रिय कार्यक्रमों में से चुनें।</p>
+            </div>
+
+            <!-- Free Consultation Card -->
+            <div class="consultation-cta-top">
+                <div class="consultation-highlight">
+                    <div class="consultation-icon">💬</div>
+                    <div class="consultation-text">
+                        <div class="consultation-header">
+                            <h3>मुफ्त परामर्श से शुरुआत करें</h3>
+                            <button class="btn btn-primary btn-bubble" onclick="goToStep1()">
+                                अभी बुक करें
+                            </button>
+                        </div>
+                        <p>किसी भी कार्यक्रम में शामिल होने से पहले अपने स्वास्थ्य लक्ष्यों पर चर्चा करें और हमारे विशेषज्ञ पोषण विशेषज्ञ से व्यक्तिगत सुझाव प्राप्त करें।</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="programs-list">
+                <!-- Diabetes Management Light -->
+                <div class="program-item">
+                    <div class="program-card" data-program="diabetes-light">
+                        <div class="program-main">
+                            <div class="program-icon">🩺</div>
+                            <div class="program-info">
+                                <h3 class="program-name">मधुमेह प्रबंधन - लाइट</h3>
+                                <span class="program-duration">3 माह</span>
+                            </div>
+                            <div class="program-pricing">
+                                <div class="offer-price">₹999</div>
+                                <div class="mrp">₹2,997</div>
+                            </div>
+                            <button class="expand-btn" type="button" aria-label="Show details">
+                                <span class="expand-icon">▼</span>
+                            </button>
+                        </div>
+                        
+                        <div class="program-details hidden">
+                            <div class="program-description">
+                                <p>आपके ब्लड शुगर के स्तर को नियंत्रित करने में मदद करने के लिए एक हल्का कार्यक्रम। पोषण और जीवनशैली विशेषज्ञों द्वारा मार्गदर्शित।</p>
+                            </div>
+
+                            <div class="program-features">
+                                <div class="feature">1 डॉक्टर/मधुमेह विशेषज्ञ परामर्श</div>
+                                <div class="feature">2 पोषणविद् सत्र + चेक-इन</div>
+                                <div class="feature">असीमित चैट सपोर्ट</div>
+                                <div class="feature">मासिक 22+ लाइव योग/व्यायाम कक्षाएं</div>
+                                <div class="feature">AI-संचालित व्यक्तिगत आहार और व्यायाम योजना</div>
+                                <div class="feature">स्वास्थ्य ट्रैकर और जोखिम मूल्यांकन</div>
+                            </div>
+
+                            <div class="best-suited">
+                                <strong>किसके लिए सबसे उपयुक्त:</strong> HbA1c > 5.7% या हाल ही में निदान हुआ मधुमेह (1-5 वर्ष)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Diabetes Management Plus -->
+                <div class="program-item">
+                    <div class="program-card" data-program="diabetes-plus">
+                        <div class="program-main">
+                            <div class="program-icon">🩺</div>
+                            <div class="program-info">
+                                <h3 class="program-name">मधुमेह प्रबंधन - प्लस</h3>
+                                <span class="program-duration">3 माह</span>
+                            </div>
+                            <div class="program-pricing">
+                                <div class="offer-price">₹1,999</div>
+                                <div class="mrp">₹5,997</div>
+                            </div>
+                            <button class="expand-btn" type="button" aria-label="Show details">
+                                <span class="expand-icon">▼</span>
+                            </button>
+                        </div>
+                        
+                        <div class="program-details hidden">
+                            <div class="program-description">
+                                <p>निकटतम सहायता के लिए उच्च-स्पर्श योजना। मापने योग्य HbA1c सुधार (0.5-1% कमी) प्राप्त करें।</p>
+                            </div>
+
+                            <div class="program-features">
+                                <div class="feature">2 डॉक्टर/मधुमेह विशेषज्ञ परामर्श</div>
+                                <div class="feature">4 पोषणविद् सत्र + चेक-इन</div>
+                                <div class="feature">असीमित विशेषज्ञ चैट सपोर्ट</div>
+                                <div class="feature">मासिक 22+ लाइव योग/व्यायाम कक्षाएं</div>
+                                <div class="feature">व्यक्तिगत आहार और व्यायाम कोचिंग</div>
+                                <div class="feature">वेलनेस लाइब्रेरी और रेसिपी बुक</div>
+                            </div>
+
+                            <div class="best-suited">
+                                <strong>किसके लिए सबसे उपयुक्त:</strong> HbA1c > 6.5% या 1-5 वर्षों से मधुमेह के साथ जी रहे हैं
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Weight Management Light -->
+                <div class="program-item">
+                    <div class="program-card" data-program="weight-light">
+                        <div class="program-main">
+                            <div class="program-icon">⚖️</div>
+                            <div class="program-info">
+                                <h3 class="program-name">वजन प्रबंधन - लाइट</h3>
+                                <span class="program-duration">3 माह</span>
+                            </div>
+                            <div class="program-pricing">
+                                <div class="offer-price">₹999</div>
+                                <div class="mrp">₹2,997</div>
+                            </div>
+                            <button class="expand-btn" type="button" aria-label="Show details">
+                                <span class="expand-icon">▼</span>
+                            </button>
+                        </div>
+                        
+                        <div class="program-details hidden">
+                            <div class="program-description">
+                                <p>विशेषज्ञ पोषण और व्यायाम मार्गदर्शन के साथ स्थायी वजन कमी शुरू करने के लिए हल्का सहायता योजना।</p>
+                            </div>
+
+                            <div class="program-features">
+                                <div class="feature">2 पोषणविद् सत्र + चेक-इन</div>
+                                <div class="feature">2 योग/व्यायाम कोच सत्र</div>
+                                <div class="feature">विशेषज्ञों के साथ असीमित चैट सपोर्ट</div>
+                                <div class="feature">मासिक 22+ लाइव योग/व्यायाम कक्षाएं</div>
+                                <div class="feature">AI-संचालित आहार और व्यायाम मार्गदर्शन</div>
+                                <div class="feature">वजन, कदम, नींद ट्रैकर</div>
+                            </div>
+
+                            <div class="best-suited">
+                                <strong>किसके लिए सबसे उपयुक्त:</strong> BMI > 27 या संबंधित स्थितियों का प्रबंधन (PCOS, उच्च रक्तचाप, आदि)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Weight Management Plus -->
+                <div class="program-item">
+                    <div class="program-card" data-program="weight-plus">
+                        <div class="program-main">
+                            <div class="program-icon">⚖️</div>
+                            <div class="program-info">
+                                <h3 class="program-name">वजन प्रबंधन - प्लस</h3>
+                                <span class="program-duration">3 माह</span>
+                            </div>
+                            <div class="program-pricing">
+                                <div class="offer-price">₹1,999</div>
+                                <div class="mrp">₹5,997</div>
+                            </div>
+                            <button class="expand-btn" type="button" aria-label="Show details">
+                                <span class="expand-icon">▼</span>
+                            </button>
+                        </div>
+                        
+                        <div class="program-details hidden">
+                            <div class="program-description">
+                                <p>वजन लक्ष्यों को पूरा करने के लिए निकटतम निगरानी की आवश्यकता वालों के लिए गहन, उच्च-स्पर्श योजना और संरचित कोचिंग।</p>
+                            </div>
+
+                            <div class="program-features">
+                                <div class="feature">4 पोषणविद् सत्र + चेक-इन</div>
+                                <div class="feature">4 योग/व्यायाम कोच सत्र</div>
+                                <div class="feature">असीमित विशेषज्ञ चैट सपोर्ट</div>
+                                <div class="feature">मासिक 22+ लाइव योग/व्यायाम कक्षाएं</div>
+                                <div class="feature">विशेषज्ञों द्वारा व्यक्तिगत पोषण योजना</div>
+                                <div class="feature">वेलनेस लाइब्रेरी, चुनौतियां और रेसिपी</div>
+                            </div>
+
+                            <div class="best-suited">
+                                <strong>किसके लिए सबसे उपयुक्त:</strong> BMI > 30 या अन्य स्वास्थ्य स्थितियों के लिए वजन प्रबंधन
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="app-access-note">
+                <div class="app-icon">📱</div>
+                <p><strong>सभी कार्यक्रमों में शामिल:</strong> आसान शेड्यूलिंग, प्रगति ट्रैकिंग, और 24/7 सपोर्ट के लिए Lillia ऐप की पूरी पहुंच</p>
+            </div>
+
+            <div class="consultation-cta-bottom">
+                <button class="btn btn-primary btn-large" onclick="goToStep1()">
+                    मुफ्त परामर्श बुक करें
+                </button>
+            </div>
+        </div>
+
+        <!-- Step 1: User Details Form -->
+        <div class="form-container hidden" id="step1">
+            <div class="form-header">
+                <h1>Tell Us About Yourself</h1>
+                <p>Let's gather some basic information to personalize your experience</p>
+            </div>
+
+            <div class="selected-program-summary" id="selectedProgramSummary">
+                <!-- Selected program details will be inserted here -->
+            </div>
+
+            <form id="userDetailsForm">
+                <div class="form-group">
+                    <label for="fullName">Full Name *</label>
+                    <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="mobileNumber">Mobile Number *</label>
+                        <input type="tel" id="mobileNumber" name="mobileNumber" required placeholder="+91 XXXXX XXXXX" pattern="[0-9+\s-]{10,}">
+                        <span class="error-message"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="your@email.com">
+                        <span class="error-message"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group" id="hba1c-group">
+                        <label for="hba1c">Latest HbA1c (%)</label>
+                        <input type="number" id="hba1c" name="hba1c" step="0.1" min="0" max="15" placeholder="e.g., 6.5">
+                        <span class="error-message"></span>
+                        <span class="helper-text">Optional: Your most recent HbA1c reading</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="height">Height (cm) *</label>
+                        <input type="number" id="height" name="height" required min="50" max="250" placeholder="e.g., 170">
+                        <span class="error-message"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="weight">Weight (kg) *</label>
+                        <input type="number" id="weight" name="weight" required step="0.1" min="20" max="300" placeholder="e.g., 70">
+                        <span class="error-message"></span>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary" onclick="goToPrograms()">Back to Programs</button>
+                    <button type="submit" class="btn btn-primary">Continue</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Step 2: OTP Verification -->
+        <div class="form-container hidden" id="step2">
+            <div class="form-header">
+                <h1>Verify Your Email</h1>
+                <p>We've sent a verification code to <span id="emailDisplay"></span></p>
+            </div>
+
+            <form id="otpForm">
+                <div class="otp-container">
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+                </div>
+                <span class="error-message" id="otpError"></span>
+
+                <div class="resend-container">
+                    <p>Didn't receive the code? <button type="button" id="resendOtp" class="link-btn">Resend OTP</button></p>
+                    <p class="timer" id="resendTimer"></p>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary" onclick="goToStep(1)">Back</button>
+                    <button type="submit" class="btn btn-primary">Verify & Continue</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Step 3: Schedule Consultation -->
+        <div class="form-container hidden" id="step3">
+            <div class="form-header">
+                <h1>Schedule Your FREE Consultation</h1>
+                <p>Book your first session with our expert nutritionist</p>
+            </div>
+
+            <div class="nutritionist-info">
+                <div class="nutritionist-details">
+                    <h3 id="nutritionistName">Dr. Sarah Johnson</h3>
+                    <p>Certified Nutritionist & Diabetes Specialist</p>
+                </div>
+            </div>
+
+            <div id="calendarContainer">
+                <!-- Calendar will be loaded here -->
+            </div>
+
+            <div class="selected-slot hidden" id="selectedSlotContainer">
+                <h3>Selected Time Slot</h3>
+                <p id="selectedSlotDisplay"></p>
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="btn btn-secondary" onclick="goToStep(2)">Back</button>
+                <button type="button" class="btn btn-primary" id="confirmBooking" disabled>Confirm Booking</button>
+            </div>
+        </div>
+
+        <!-- Step 4: Confirmation & App Download -->
+        <div class="form-container hidden" id="step4">
+            <div class="success-container">
+                <div class="success-icon">✓</div>
+                <h1>Congratulations!</h1>
+                <p>Your profile has been created successfully</p>
+            </div>
+
+            <div class="confirmation-details">
+                <h3>Appointment Confirmed</h3>
+                <div class="appointment-card">
+                    <div class="appointment-info">
+                        <p><strong>Date & Time:</strong> <span id="appointmentDateTime"></span></p>
+                        <p><strong>Nutritionist:</strong> <span id="appointmentNutritionist"></span></p>
+                        <p><strong>Type:</strong> Free Consultation (15 minutes)</p>
+                    </div>
+                </div>
+                <p class="confirmation-note">Confirmation details have been sent to your email</p>
+            </div>
+
+            <div class="app-download-section">
+                <h3>Get Started with Our App</h3>
+                <p>Access your personalized health dashboard on the go</p>
+                
+                <div class="deep-link-container">
+                    <p class="deep-link-label">Your Personal Login Link:</p>
+                    <div class="deep-link-display">
+                        <code id="deepLinkUrl"></code>
+                        <button class="copy-btn" onclick="copyDeepLink()">Copy</button>
+                    </div>
+                </div>
+
+                <button class="btn btn-download" id="downloadAppBtn">
+                    <span class="download-icon">📱</span>
+                    Download App
+                </button>
+
+                <div class="app-features">
+                    <div class="feature">
+                        <span class="feature-icon">📊</span>
+                        <span>Track Progress</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🍎</span>
+                        <span>Meal Plans</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">💬</span>
+                        <span>Chat Support</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay hidden" id="loadingOverlay">
+            <div class="spinner"></div>
+            <p id="loadingText">Processing...</p>
+        </div>
+    </div>
+
+    <script src="onboarding-hindi-script.js"></script>
+</body>
+</html>

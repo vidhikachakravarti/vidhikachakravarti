@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>अपना मुफ्त परामर्श निर्धारित करें - स्वास्थ्य यात्रा</title>
+    <link rel="stylesheet" href="onboarding-hindi-styles.css">
+</head>
+<body>
+    <!-- Fixed Header with Logo -->
+    <div class="fixed-header">
+        <div class="header-container">
+            <img src="lillia-logo-hindi.png" alt="Lillia" class="logo">
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress-step completed">
+                <div class="step-number">1</div>
+                <span class="step-label">विवरण</span>
+            </div>
+            <div class="progress-step completed">
+                <div class="step-number">2</div>
+                <span class="step-label">सत्यापन</span>
+            </div>
+            <div class="progress-step active">
+                <div class="step-number">3</div>
+                <span class="step-label">कार्यक्रम</span>
+            </div>
+            <div class="progress-step">
+                <div class="step-number">4</div>
+                <span class="step-label">पूर्ण</span>
+            </div>
+        </div>
+
+        <!-- Step 3: Schedule Consultation -->
+        <div class="form-container" id="step3">
+            <div class="form-header">
+                <h1>अपना मुफ्त परामर्श निर्धारित करें</h1>
+                <p>हमारे विशेषज्ञ पोषणविद् के साथ अपना पहला सत्र बुक करें</p>
+            </div>
+
+            <div class="nutritionist-info">
+                <div class="nutritionist-details">
+                    <h3 id="nutritionistName">Dr. Sarah Johnson</h3>
+                    <p>प्रमाणित पोषणविद् और मधुमेह विशेषज्ञ</p>
+                </div>
+            </div>
+
+            <div id="calendarContainer">
+                <!-- Calendar will be loaded here -->
+            </div>
+
+            <div class="selected-slot hidden" id="selectedSlotContainer">
+                <h3>चयनित समय स्लॉट</h3>
+                <p id="selectedSlotDisplay"></p>
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="btn btn-secondary" onclick="goToStep2()">वापस</button>
+                <button type="button" class="btn btn-primary" id="confirmBooking" disabled>बुकिंग की पुष्टि करें</button>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay hidden" id="loadingOverlay">
+            <div class="spinner"></div>
+            <p id="loadingText">बुकिंग चल रही है...</p>
+        </div>
+    </div>
+
+    <script src="step3-hindi-script.js"></script>
+</body>
+</html>
